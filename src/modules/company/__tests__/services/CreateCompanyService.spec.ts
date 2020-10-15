@@ -1,4 +1,4 @@
-import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepositry';
+import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepository';
 import CreateCompanyService from '@modules/company/services/CreateCompanyService';
 import AppError from '@shared/errors/AppError';
 import IHasProvider from '@modules/company/infra/providers/HashProvider/model/IHashProvider';

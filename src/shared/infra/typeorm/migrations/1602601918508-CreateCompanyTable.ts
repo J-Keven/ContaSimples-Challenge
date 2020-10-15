@@ -12,6 +12,7 @@ export default class CreateCompanyTable1602601918508
             type: 'uuid',
             generationStrategy: 'uuid',
             isPrimary: true,
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'name',

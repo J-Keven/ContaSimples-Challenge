@@ -1,3 +1,4 @@
+import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '../infra/providers/HashProvider/model/IHashProvider';
 import ITokenProvider from '../infra/providers/TokenProvider/models/ITokenProvider';
@@ -5,7 +6,7 @@ import Company from '../infra/typeorm/entities/Company';
 import ICompanyRepository from '../repositories/ICompanyRepository';
 
 interface IRequestDTO {
-  email: string;
+  cnpj: string;
   password: string;
 }
 
@@ -14,6 +15,7 @@ interface IResponseDTO {
   token: string;
 }
 
+@injectable()
 class CreateSessionService {
   private hashProvider: IHashProvider;
 
@@ -22,8 +24,11 @@ class CreateSessionService {
   private tokenProvider: ITokenProvider;
 
   constructor(
+    @inject('CompanyRepository')
     companyRepository: ICompanyRepository,
+    @inject('HashProvider')
     hashProvider: IHashProvider,
+    @inject('TokenProvider')
     tokenProvider: ITokenProvider,
   ) {
     this.companyRepository = companyRepository;
@@ -31,14 +36,11 @@ class CreateSessionService {
     this.tokenProvider = tokenProvider;
   }
 
-  public async execute({
-    email,
-    password,
-  }: IRequestDTO): Promise<IResponseDTO> {
-    const company = await this.companyRepository.findByEmail(email);
+  public async execute({ cnpj, password }: IRequestDTO): Promise<IResponseDTO> {
+    const company = await this.companyRepository.findByCnpj(cnpj);
 
     if (!company) {
-      throw new AppError('Email/passwor incorrect');
+      throw new AppError('Cnpj/password incorrect');
     }
 
     const isPassword = await this.hashProvider.compare({
@@ -47,7 +49,7 @@ class CreateSessionService {
     });
 
     if (!isPassword) {
-      throw new AppError('Email/passwor incorrect');
+      throw new AppError('Cnpj/password incorrect');
     }
 
     const token = await this.tokenProvider.create(company);

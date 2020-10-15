@@ -1,4 +1,4 @@
-import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepositry';
+import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepository';
 import CreateSessionService from '@modules/company/services/CreateSessionService';
 import AppError from '@shared/errors/AppError';
 import IHasProvider from '@modules/company/infra/providers/HashProvider/model/IHashProvider';
@@ -34,7 +34,7 @@ describe('CreateCompanyService', () => {
     const createToken = jest.spyOn(fakeTokenProvider, 'create');
 
     const session = await createSessionService.execute({
-      email: 'empresa@example.com',
+      cnpj: 'cnpj-empresa',
       password: '123456',
     });
 
@@ -51,14 +51,14 @@ describe('CreateCompanyService', () => {
 
     await expect(
       createSessionService.execute({
-        email: 'example@example.com',
+        cnpj: 'cnpj-empresa-test',
         password: '123456',
       }),
     ).rejects.toBeInstanceOf(AppError);
 
     await expect(
       createSessionService.execute({
-        email: 'empresa@example.com',
+        cnpj: 'cnpj-empresa',
         password: '123123',
       }),
     ).rejects.toBeInstanceOf(AppError);

@@ -5,7 +5,11 @@
   "username": "postgres",
   "password": "docker",
   "database": "challenge",
-  "entities": "",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "./src/modules/**/infra/typeorm/entities/*.ts"
+  ],
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
   ],

@@ -6,6 +6,11 @@ import ICompanyRepository from '../ICompanyRepository';
 class FakeCompanyRepository implements ICompanyRepository {
   private companies: Company[] = [];
 
+  public async findById(id: string): Promise<Company | undefined> {
+    const company = this.companies.find(companyItem => companyItem.id === id);
+    return company;
+  }
+
   public async findByCnpj(cnpj: string): Promise<Company | undefined> {
     const company = this.companies.find(
       companyItem => companyItem.cnpj === cnpj,
