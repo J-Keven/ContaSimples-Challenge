@@ -28,7 +28,7 @@ describe('CreateCard', () => {
 
     const card = await createCardService.execute({
       cardName: 'card-test',
-      cardNumber: '1234567812343456',
+      cardNumber: '1234 5678 1234 3456',
       ccv: 123,
       company_Id: company.id,
     });
@@ -37,11 +37,37 @@ describe('CreateCard', () => {
     expect(card.company_Id).toBe(company.id);
   });
 
-  it('should not be able to add a new card if company id does not exist', async () => {
+  it('should not be able to add a new card to company if the namber or format is invalid', async () => {
+    const company = await fakeCompanyRepository.create({
+      cnpj: 'cnpj-empresa',
+      name: 'EMPRESA S/A',
+      email: 'empresasa@exmaple.com',
+      password: '123456',
+    });
+
+    await expect(
+      createCardService.execute({
+        cardName: 'card-test',
+        cardNumber: '1234 5678 1234',
+        ccv: 123,
+        company_Id: company.id,
+      }),
+    ).rejects.toBeInstanceOf(AppError);
     await expect(
       createCardService.execute({
         cardName: 'card-test',
         cardNumber: '1234567812343456',
+        ccv: 123,
+        company_Id: company.id,
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to add a new card if company id does not exist', async () => {
+    await expect(
+      createCardService.execute({
+        cardName: 'card-test',
+        cardNumber: '1234 5678 1234 3456',
         ccv: 123,
         company_Id: 'company-id',
       }),
@@ -58,7 +84,7 @@ describe('CreateCard', () => {
 
     await createCardService.execute({
       cardName: 'card-test',
-      cardNumber: '1234567812343456',
+      cardNumber: '1234 5678 1234 3456',
       ccv: 123,
       company_Id: company.id,
     });
@@ -66,7 +92,7 @@ describe('CreateCard', () => {
     await expect(
       createCardService.execute({
         cardName: 'card2-test',
-        cardNumber: '1234567812343456',
+        cardNumber: '1234 5678 1234 3456',
         ccv: 456,
         company_Id: company.id,
       }),

@@ -33,6 +33,11 @@ class CreateCardService {
     ccv,
     company_Id,
   }: IRequestDTO): Promise<Cards> {
+    const splitNumberOfCart = cardNumber.split(' ');
+    if (splitNumberOfCart.length !== 4 || cardName.length === 19) {
+      throw new AppError('The card number format is invalid');
+    }
+
     const company = await this.companyRepository.findById(company_Id);
     if (!company) {
       throw new AppError('Comapny not found');

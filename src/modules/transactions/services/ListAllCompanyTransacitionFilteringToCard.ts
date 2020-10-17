@@ -8,15 +8,10 @@ import getEndOfCardNumber from './utils/getEndOfCardNumber';
 
 interface IRequestDTO {
   company_Id: string;
-  description: string;
-  trasactionType: string;
-  value: number;
-  establishment?: string;
-  cardNumber?: string;
-  type: 'CREDIT' | 'DEBIT';
+  cardNumber: string;
 }
 
-interface IResponseDTO {
+type IResponseDTO = Array<{
   id: string;
   company_Id: string;
   description: string;
@@ -25,7 +20,7 @@ interface IResponseDTO {
   establishment?: string;
   endOfCard?: string;
   type: string;
-}
+}>;
 
 @injectable()
 class CreateTransactionService {
@@ -50,12 +45,7 @@ class CreateTransactionService {
 
   public async execute({
     company_Id,
-    description,
-    trasactionType,
-    value,
-    establishment,
     cardNumber,
-    type,
   }: IRequestDTO): Promise<IResponseDTO> {
     const company = await this.companyRepository.findById(company_Id);
 
@@ -63,52 +53,27 @@ class CreateTransactionService {
       throw new AppError('Company not found');
     }
 
-    const balence = await this.transactionRepository.getBalence(company.id);
+    const transactions = await this.transactionRepository.findAllWithCardFromCompany(
+      {
+        company_Id,
+        cardNumber,
+      },
+    );
 
-    if (type === 'DEBIT' && value > balence.balanceTotal) {
-      throw new AppError('insufficient balance');
-    }
+    const response = transactions.map(transaction => {
+      const endOfCard = transaction.cardNumber
+        ? getEndOfCardNumber(transaction.cardNumber)
+        : undefined;
 
-    if (trasactionType.toUpperCase() === 'CARD') {
-      if (!cardNumber) {
-        throw new AppError('Number of card is required');
-      }
+      delete transaction.cardNumber;
 
-      if (cardNumber.split(' ').length !== 4) {
-        throw new AppError('The card format is invalid');
-      }
-
-      if (cardNumber.split(' ').join('').length !== 16) {
-        throw new AppError('The card number is invalid');
-      }
-
-      const card = await this.cardRepository.findByNumber(cardNumber);
-
-      if (!card) {
-        throw new AppError('Card non exist', 401);
-      }
-    }
-
-    const transaction = await this.transactionRepository.create({
-      company_Id,
-      description,
-      trasactionType,
-      value,
-      establishment,
-      cardNumber,
-      type,
+      return {
+        ...transaction,
+        endOfCard,
+      };
     });
 
-    const endOfCard = transaction.cardNumber
-      ? getEndOfCardNumber(transaction.cardNumber)
-      : undefined;
-
-    delete transaction.cardNumber;
-
-    return {
-      ...transaction,
-      endOfCard,
-    };
+    return response;
   }
 }
 

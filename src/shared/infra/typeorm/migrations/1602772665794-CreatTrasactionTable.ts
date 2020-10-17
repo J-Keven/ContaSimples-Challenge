@@ -36,7 +36,7 @@ export default class CreatTrasactionTable1602772665794
             type: 'varchar',
           },
           {
-            name: 'endOfCard',
+            name: 'cardNumber',
             isNullable: true,
             type: 'varchar',
           },

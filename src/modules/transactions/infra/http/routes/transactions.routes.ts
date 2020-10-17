@@ -2,16 +2,16 @@ import { Router } from 'express';
 
 import ensureAuthenticated from '@modules/company/infra/http/middlewares/ensureAutheticated';
 import TransactionController from '../controllers/CreateTransactionController';
-import ListAllCompanyTransactionsFilteringByDateAndTypeController from '../controllers/ListAllCompanyTransactionsFilteringByDateAndTypeController';
+import ListLastTransactionOfCompanyService from '../controllers/ListLastTransactionOfCompanyController';
 
 const transacionsRoutes = Router();
 const transactionsController = new TransactionController();
-const listAllCompanyTransactionsFilteringByDateAndTypeController = new ListAllCompanyTransactionsFilteringByDateAndTypeController();
+const listLastTransactionOfCompanyService = new ListLastTransactionOfCompanyService();
+
 transacionsRoutes.use(ensureAuthenticated);
-transacionsRoutes.get(
-  '/extract',
-  listAllCompanyTransactionsFilteringByDateAndTypeController.index,
-);
+
+transacionsRoutes.get('/me/last', listLastTransactionOfCompanyService.index);
+
 transacionsRoutes.post('/', transactionsController.create);
 
 export default transacionsRoutes;

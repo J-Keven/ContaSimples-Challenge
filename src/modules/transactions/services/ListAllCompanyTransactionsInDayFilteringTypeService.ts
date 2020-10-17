@@ -6,12 +6,14 @@ import AppError from '@shared/errors/AppError';
 
 interface IRequestDTO {
   company_Id: string;
-  date: Date;
+  day: number;
+  month: number;
+  year: number;
   type: 'CREDIT' | 'DEBIT';
 }
 
 @injectable()
-class ListAllCompanyTransactionsFilteringByDateAndTypeService {
+class ListAllCompanyTransactionsInDayFilteringTypeService {
   private companyRepository: ICompanyRepository;
 
   private transactionRepositoy: ITransactionRepository;
@@ -29,7 +31,9 @@ class ListAllCompanyTransactionsFilteringByDateAndTypeService {
 
   public async execute({
     company_Id,
-    date,
+    day,
+    month,
+    year,
     type,
   }: IRequestDTO): Promise<Transactions[]> {
     const company = await this.companyRepository.findById(company_Id);
@@ -37,11 +41,12 @@ class ListAllCompanyTransactionsFilteringByDateAndTypeService {
     if (!company) {
       throw new AppError('Company not found');
     }
-
-    const transactions = await this.transactionRepositoy.findAllTransactionsFilteringByDateAndType(
+    const transactions = await this.transactionRepositoy.findAllInDayFromCompany(
       {
         company_Id,
-        date,
+        day,
+        month,
+        year,
         type,
       },
     );
@@ -50,4 +55,4 @@ class ListAllCompanyTransactionsFilteringByDateAndTypeService {
   }
 }
 
-export default ListAllCompanyTransactionsFilteringByDateAndTypeService;
+export default ListAllCompanyTransactionsInDayFilteringTypeService;

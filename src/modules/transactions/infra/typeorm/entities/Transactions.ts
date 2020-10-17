@@ -28,7 +28,7 @@ class Transactions {
   type: 'CREDIT' | 'DEBIT';
 
   @Column()
-  endOfCard?: string;
+  cardNumber?: string;
 
   @Column()
   establishment?: string;

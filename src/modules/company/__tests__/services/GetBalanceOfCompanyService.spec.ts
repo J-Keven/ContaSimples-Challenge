@@ -1,6 +1,6 @@
 import ITransactionRepository from '@modules/transactions/repositories/ITransactionRepository';
 import FakeTransactionRepository from '@modules/transactions/repositories/fake/FakeTransactionRepository';
-import GetBalanceOfCompanyService from '@modules/transactions/services/GetBalanceOfCompanyService';
+import GetBalanceOfCompanyService from '@modules/company/services/GetBalanceOfCompanyService';
 import ICompanyRepository from '@modules/company/repositories/ICompanyRepository';
 import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepository';
 import AppError from '@shared/errors/AppError';

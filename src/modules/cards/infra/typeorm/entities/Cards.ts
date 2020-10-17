@@ -29,9 +29,6 @@ class Cards {
   cardName: string;
 
   @Column()
-  agencyNumber: string;
-
-  @Column()
   ccv: number;
 
   @CreateDateColumn()

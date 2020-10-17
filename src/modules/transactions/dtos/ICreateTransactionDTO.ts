@@ -4,6 +4,6 @@ export default interface ICreateTransactionDTO {
   trasactionType: string;
   value: number;
   type: 'CREDIT' | 'DEBIT';
-  endOfCard?: string;
+  cardNumber?: string;
   establishment?: string;
 }

@@ -28,6 +28,7 @@
       "class-methods-use-this": "off",
       "no-loop-func": "off",
       "camelcase": "off",
+      "no-param-reassign": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

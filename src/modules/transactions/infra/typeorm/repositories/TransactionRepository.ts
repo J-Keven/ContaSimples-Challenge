@@ -1,10 +1,10 @@
 import { Repository, getRepository, Raw } from 'typeorm';
-import { getDate, getMonth, getYear } from 'date-fns';
 import ICreateTransactionDTO from '@modules/transactions/dtos/ICreateTransactionDTO';
 import IGetBalenceResponseDTO from '@modules/transactions/dtos/IGetBalenceResponseDTO';
 import Transactions from '@modules/transactions/infra/typeorm/entities/Transactions';
 import ITransactionRepository from '@modules/transactions/repositories/ITransactionRepository';
-import IlistAllTransactionsFilteringByDateAndTypeDTO from '@modules/transactions/dtos/IListAllTransactionsFilteringByDateAndTypeDTO';
+import IFindAllInDayFromCompanyDTO from '@modules/transactions/dtos/IFindAllInDayFromCompanyDTO';
+import IFindAllInMonthFromCompanyDTO from '@modules/transactions/dtos/IFindAllInMonthFromCompanyDTO';
 
 class TransactionRepository implements ITransactionRepository {
   private ormRepository: Repository<Transactions>;
@@ -15,23 +15,45 @@ class TransactionRepository implements ITransactionRepository {
 
   public async findLasTransaction(company_Id: string): Promise<Transactions> {
     // const transaction = await this.ormRepository.find()
+    // Falta terminar
     return new Transactions();
   }
 
-  public async findAllTransactionsFilteringByDateAndType({
+  public async findAllInDayFromCompany({
     company_Id,
-    date,
+    day,
+    month,
+    year,
     type,
-  }: IlistAllTransactionsFilteringByDateAndTypeDTO): Promise<Transactions[]> {
-    const parserDay = getDate(date).toString().padStart(2, '0');
-    const parserMonth = String(getMonth(date) + 1).padStart(2, '0');
-    const year = getYear(date);
+  }: IFindAllInDayFromCompanyDTO): Promise<Transactions[]> {
+    const parserDay = String(day).padStart(2, '0');
+    const parserMonth = String(month).padStart(2, '0');
     const transactions = await this.ormRepository.find({
       where: {
         company_Id,
         created_at: Raw(
           createdAtFildName =>
             `to_char(${createdAtFildName}, 'DD-MM-YYYY') = '${parserDay}-${parserMonth}-${year}'`,
+        ),
+        type,
+      },
+    });
+    return transactions;
+  }
+
+  public async findAllInMonthFromCompany({
+    company_Id,
+    month,
+    type,
+    year,
+  }: IFindAllInMonthFromCompanyDTO): Promise<Transactions[]> {
+    const parserMonth = String(month).padStart(2, '0');
+    const transactions = await this.ormRepository.find({
+      where: {
+        company_Id,
+        created_at: Raw(
+          createdAtFildName =>
+            `to_char(${createdAtFildName}, 'MM-YYYY') = '${parserMonth}-${year}'`,
         ),
         type,
       },
@@ -46,7 +68,7 @@ class TransactionRepository implements ITransactionRepository {
 
     const creditTotal = companyTransactions.reduce((acumulator, trasaction) => {
       if (trasaction.type === 'CREDIT') {
-        return acumulator + trasaction.value;
+        return acumulator + Number(trasaction.value);
       }
 
       return acumulator;
@@ -54,7 +76,7 @@ class TransactionRepository implements ITransactionRepository {
 
     const debitTotal = companyTransactions.reduce((acumulator, trasaction) => {
       if (trasaction.type === 'DEBIT') {
-        return acumulator + trasaction.value;
+        return acumulator + Number(trasaction.value);
       }
 
       return acumulator;
@@ -72,12 +94,12 @@ class TransactionRepository implements ITransactionRepository {
     description,
     trasactionType,
     value,
-    endOfCard,
+    cardNumber,
     establishment,
     type,
   }: ICreateTransactionDTO): Promise<Transactions> {
     const transaction = this.ormRepository.create({
-      endOfCard,
+      cardNumber,
       company_Id,
       description,
       trasactionType,

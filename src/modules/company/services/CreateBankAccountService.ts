@@ -46,8 +46,6 @@ class CreateBankAccauntService {
       accountNumber,
       accountDigit,
     });
-
-    await this.bankAccountRepository.save(bankAccount);
     return bankAccount;
   }
 }

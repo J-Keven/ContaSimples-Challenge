@@ -165,7 +165,7 @@ describe('CreateTransaction', () => {
 
     const card = await fakeCardRepository.create({
       cardName: 'jest-card',
-      cardNumber: '0101020203030404',
+      cardNumber: '0101 0202 0303 0404',
       ccv: 123,
       company_Id: company.id,
     });
@@ -194,7 +194,7 @@ describe('CreateTransaction', () => {
     expect(transaction.endOfCard).toBe('0404');
   });
 
-  it('should not be able to create a debit transaction with card if card number no exist', async () => {
+  it('should not be able to create a debit transaction with transaction type CARD if card if card number no exist', async () => {
     const company = await fakeCompanyRepository.create({
       cnpj: 'cnpj-empresa',
       name: 'EMPRESA S/A',
@@ -213,7 +213,7 @@ describe('CreateTransaction', () => {
 
     const card = await fakeCardRepository.create({
       cardName: 'jest-card',
-      cardNumber: '0101020203030404',
+      cardNumber: '0101 0202 0303 0404',
       ccv: 123,
       company_Id: company.id,
     });
@@ -231,6 +231,110 @@ describe('CreateTransaction', () => {
         company_Id: company.id,
         description: 'jest test debit of card',
         trasactionType: 'CARD',
+        value: 400,
+        establishment: 'test-test',
+        type: 'DEBIT',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a debit transaction with transaction type CARD if card format is invalid', async () => {
+    const company = await fakeCompanyRepository.create({
+      cnpj: 'cnpj-empresa',
+      name: 'EMPRESA S/A',
+      email: 'empresasa@exmaple.com',
+      password: '123456',
+    });
+
+    await fakeCardRepository.create({
+      cardName: 'jest-card',
+      cardNumber: '0101 0202 0303 0404',
+      ccv: 123,
+      company_Id: company.id,
+    });
+
+    await createTransactionService.execute({
+      company_Id: company.id,
+      description: 'jest test debit of card',
+      trasactionType: 'TED',
+      value: 1000,
+      establishment: 'test-test',
+      type: 'CREDIT',
+    });
+
+    await expect(
+      createTransactionService.execute({
+        company_Id: company.id,
+        description: 'jest test debit of card',
+        trasactionType: 'CARD',
+        cardNumber: '0101 0202 0303-0404',
+        value: 400,
+        establishment: 'test-test',
+        type: 'DEBIT',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a debit transaction with transaction type CARD if card number is invalid', async () => {
+    const company = await fakeCompanyRepository.create({
+      cnpj: 'cnpj-empresa',
+      name: 'EMPRESA S/A',
+      email: 'empresasa@exmaple.com',
+      password: '123456',
+    });
+
+    await fakeCardRepository.create({
+      cardName: 'jest-card',
+      cardNumber: '0101 0202 0303 0404',
+      ccv: 123,
+      company_Id: company.id,
+    });
+
+    await createTransactionService.execute({
+      company_Id: company.id,
+      description: 'jest test debit of card',
+      trasactionType: 'TED',
+      value: 1000,
+      establishment: 'test-test',
+      type: 'CREDIT',
+    });
+
+    await expect(
+      createTransactionService.execute({
+        company_Id: company.id,
+        description: 'jest test debit of card',
+        trasactionType: 'CARD',
+        cardNumber: '0101 0202 0303 04',
+        value: 400,
+        establishment: 'test-test',
+        type: 'DEBIT',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a debit transaction with transaction type CARD if card no exist', async () => {
+    const company = await fakeCompanyRepository.create({
+      cnpj: 'cnpj-empresa',
+      name: 'EMPRESA S/A',
+      email: 'empresasa@exmaple.com',
+      password: '123456',
+    });
+
+    await createTransactionService.execute({
+      company_Id: company.id,
+      description: 'jest test debit of card',
+      trasactionType: 'TED',
+      value: 1000,
+      establishment: 'test-test',
+      type: 'CREDIT',
+    });
+
+    await expect(
+      createTransactionService.execute({
+        company_Id: company.id,
+        description: 'jest test debit of card',
+        trasactionType: 'CARD',
+        cardNumber: '0101 0202 0303 0404',
         value: 400,
         establishment: 'test-test',
         type: 'DEBIT',

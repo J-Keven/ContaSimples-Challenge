@@ -1,7 +1,9 @@
 import { v4 } from 'uuid';
 import { isEqual, getYear, getMonth, getDate } from 'date-fns';
 import ICreateTransactionDTO from '@modules/transactions/dtos/ICreateTransactionDTO';
-import IlistAllTransactionsFilteringByDateAndTypeDTO from '@modules/transactions/dtos/IListAllTransactionsFilteringByDateAndTypeDTO';
+import IFindAllInDayFromCompanyDTO from '@modules/transactions/dtos/IFindAllInDayFromCompanyDTO';
+import IFindAllInMonthFromCompanyDTO from '@modules/transactions/dtos/IFindAllInMonthFromCompanyDTO';
+import IFindAllWithCardFromCompanyDTO from '@modules/transactions/dtos/IFindAllWithCardFromCompanyDTO';
 import IGetBalenceResponseDTO from '@modules/transactions/dtos/IGetBalenceResponseDTO';
 import Transaction from '@modules/transactions/infra/typeorm/entities/Transactions';
 import ITransactionRepository from '../ITransactionRepository';
@@ -17,11 +19,13 @@ class FakeTransactionRepository implements ITransactionRepository {
     return transaction[transaction.length - 1];
   }
 
-  public async findAllTransactionsFilteringByDateAndType({
+  public async findAllInDayFromCompany({
     company_Id,
-    date,
+    day,
+    month,
+    year,
     type,
-  }: IlistAllTransactionsFilteringByDateAndTypeDTO): Promise<Transaction[]> {
+  }: IFindAllInDayFromCompanyDTO): Promise<Transaction[]> {
     const transactions = this.trasactions.filter(transaction => {
       const dateCompare = new Date(
         getYear(transaction.created_at),
@@ -29,11 +33,7 @@ class FakeTransactionRepository implements ITransactionRepository {
         getDate(transaction.created_at),
       );
 
-      const dateRequest = new Date(
-        getYear(date),
-        getMonth(date),
-        getDate(date),
-      );
+      const dateRequest = new Date(year, month - 1, day);
       return (
         transaction.company_Id === company_Id &&
         transaction.type === type &&
@@ -41,6 +41,39 @@ class FakeTransactionRepository implements ITransactionRepository {
       );
     });
     return transactions;
+  }
+
+  public async findAllInMonthFromCompany({
+    company_Id,
+    month,
+    type,
+    year,
+  }: IFindAllInMonthFromCompanyDTO): Promise<Transaction[]> {
+    const transactions = this.trasactions.filter(transaction => {
+      const dateCompare = new Date(
+        getYear(transaction.created_at),
+        getMonth(transaction.created_at),
+      );
+
+      const dateRequest = new Date(year, month - 1);
+      return (
+        transaction.company_Id === company_Id &&
+        transaction.type === type &&
+        isEqual(dateCompare, dateRequest)
+      );
+    });
+    return transactions;
+  }
+
+  public async findAllWithCardFromCompany({
+    cardNumber,
+    company_Id,
+  }: IFindAllWithCardFromCompanyDTO): Promise<Transaction[]> {
+    const transaction = this.trasactions.filter(
+      item => item.company_Id && item.cardNumber === cardNumber,
+    );
+
+    return transaction;
   }
 
   public async getBalence(company_Id: string): Promise<IGetBalenceResponseDTO> {
@@ -76,7 +109,7 @@ class FakeTransactionRepository implements ITransactionRepository {
     description,
     trasactionType,
     value,
-    endOfCard,
+    cardNumber,
     establishment,
     type,
   }: ICreateTransactionDTO): Promise<Transaction> {
@@ -88,7 +121,7 @@ class FakeTransactionRepository implements ITransactionRepository {
       description,
       trasactionType,
       value,
-      endOfCard,
+      cardNumber,
       establishment,
       type,
       created_at: Date.now(),
