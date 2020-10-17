@@ -5,8 +5,6 @@
   "username": "postgres",
   "password": "docker",
   "database": "challenge",
-  "synchronize": true,
-  "logging": false,
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"
   ],

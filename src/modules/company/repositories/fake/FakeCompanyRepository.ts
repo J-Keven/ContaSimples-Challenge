@@ -1,6 +1,7 @@
 import { v4 } from 'uuid';
 import Company from '@modules/company/infra/typeorm/entities/Company';
 import ICreateCompany from '@modules/company/dtos/ICreateCompanyDTO';
+import AppError from '@shared/errors/AppError';
 import ICompanyRepository from '../ICompanyRepository';
 
 class FakeCompanyRepository implements ICompanyRepository {
@@ -38,6 +39,7 @@ class FakeCompanyRepository implements ICompanyRepository {
       cnpj,
       email,
       password,
+      balance: 0,
     });
 
     this.companies.push(company);

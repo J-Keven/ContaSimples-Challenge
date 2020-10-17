@@ -1,4 +1,4 @@
-import { Repository, getRepository } from 'typeorm';
+import { Repository, getRepository, createQueryBuilder } from 'typeorm';
 import BankAccount from '@modules/company/infra/typeorm/entities/BankAccount';
 import ICreateBankAccountDTO from '@modules/company/dtos/ICreateBankAccountDTO';
 import IBankAccountRepository from '@modules/company/repositories/IBankAccountRepository';
@@ -17,16 +17,6 @@ class BankAccountRepository implements IBankAccountRepository {
   }
 
   public async finByAccountNumber(
-    accountNumber: string,
-  ): Promise<BankAccount | undefined> {
-    const bankAccount = await this.ormRepository.findOne({
-      where: { accountNumber },
-    });
-
-    return bankAccount;
-  }
-
-  public async finByCnpj(
     accountNumber: string,
   ): Promise<BankAccount | undefined> {
     const bankAccount = await this.ormRepository.findOne({
@@ -64,3 +54,12 @@ class BankAccountRepository implements IBankAccountRepository {
 }
 
 export default BankAccountRepository;
+/*
+
+
+
+
+
+
+
+*/

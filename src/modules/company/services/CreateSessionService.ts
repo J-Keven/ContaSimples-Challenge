@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
-import IHashProvider from '../infra/providers/HashProvider/model/IHashProvider';
+import IHashProvider from '../../../shared/container/HashProvider/model/IHashProvider';
 import ITokenProvider from '../infra/providers/TokenProvider/models/ITokenProvider';
 import Company from '../infra/typeorm/entities/Company';
 import ICompanyRepository from '../repositories/ICompanyRepository';

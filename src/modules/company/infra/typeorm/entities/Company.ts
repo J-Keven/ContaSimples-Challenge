@@ -5,8 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
+  JoinTable,
+  OneToMany,
 } from 'typeorm';
 
+import Cards from '@modules/cards/infra/typeorm/entities/Cards';
 import BankAccount from './BankAccount';
 
 @Entity('company')
@@ -28,6 +31,9 @@ class Company {
 
   @OneToOne(() => BankAccount, bankAccount => bankAccount.company)
   bankAccount: BankAccount;
+
+  @OneToMany(() => Cards, card => card.company)
+  cards: Cards[];
 
   @CreateDateColumn()
   created_at: string;

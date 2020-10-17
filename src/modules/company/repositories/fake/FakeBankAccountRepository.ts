@@ -1,6 +1,6 @@
 import BankAccount from '@modules/company/infra/typeorm/entities/BankAccount';
 import ICreateBankAccountDTO from '@modules/company/dtos/ICreateBankAccountDTO';
-import AppError from '@shared/errors/AppError';
+// import AppError from '@shared/errors/AppError';
 import { v4 } from 'uuid';
 import IBankAccountRepositry from '../IBankAccountRepository';
 import ICompanyRepository from '../ICompanyRepository';
@@ -24,19 +24,6 @@ class BankAccountRepositry implements IBankAccountRepositry {
     const bankAccaount = this.bankAccouts.find(
       account => account.accountNumber === accountNumber,
     );
-    return bankAccaount;
-  }
-
-  public async finByCnpj(cnpj: string): Promise<BankAccount | undefined> {
-    const company = await this.companyRepository.findByCnpj(cnpj);
-    if (!company) {
-      throw new AppError('no companies were found with this CNPJ');
-    }
-
-    const bankAccaount = this.bankAccouts.find(
-      account => account.company_Id === company.id,
-    );
-
     return bankAccaount;
   }
 
@@ -80,3 +67,16 @@ class BankAccountRepositry implements IBankAccountRepositry {
 }
 
 export default BankAccountRepositry;
+
+// public async finByCnpj(cnpj: string): Promise<BankAccount | undefined> {
+//   const company = await this.companyRepository.findByCnpj(cnpj);
+//   if (!company) {
+//     throw new AppError('no companies were found with this CNPJ');
+//   }
+
+//   const bankAccaount = this.bankAccouts.find(
+//     account => account.company_Id === company.id,
+//   );
+
+//   return bankAccaount;
+// }

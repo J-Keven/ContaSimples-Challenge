@@ -1,8 +1,8 @@
 import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepository';
 import CreateSessionService from '@modules/company/services/CreateSessionService';
 import AppError from '@shared/errors/AppError';
-import IHasProvider from '@modules/company/infra/providers/HashProvider/model/IHashProvider';
-import FakeHashProvider from '@modules/company/infra/providers/HashProvider/fake/FakeHashProvider';
+import IHasProvider from '@shared/container/HashProvider/model/IHashProvider';
+import FakeHashProvider from '@shared/container/HashProvider/fake/FakeHashProvider';
 import ITokenProvider from '@modules/company/infra/providers/TokenProvider/models/ITokenProvider';
 import FakeTokenProvider from '@modules/company/infra/providers/TokenProvider/fake/FakeTokenProvider';
 

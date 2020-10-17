@@ -13,7 +13,7 @@
     "start": "yarn build && node ./dist/shared/infra/http/server.js",
     "dev:start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "test": "jest",
-    "orm": "ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js"
+    "orm": "ts-node-dev node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "date-fns": "^2.16.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",

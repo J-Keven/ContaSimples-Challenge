@@ -18,7 +18,7 @@ class BankAccount {
   @Column()
   company_Id: string;
 
-  @OneToOne(() => Company, company => company.bankAccount)
+  @OneToOne(() => Company, company => company.bankAccount, { eager: true })
   @JoinColumn({ name: 'company_Id' })
   company: Company;
 

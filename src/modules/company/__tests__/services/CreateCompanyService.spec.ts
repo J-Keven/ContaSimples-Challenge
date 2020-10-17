@@ -1,8 +1,8 @@
 import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepository';
 import CreateCompanyService from '@modules/company/services/CreateCompanyService';
 import AppError from '@shared/errors/AppError';
-import IHasProvider from '@modules/company/infra/providers/HashProvider/model/IHashProvider';
-import FakeHashProvider from '@modules/company/infra/providers/HashProvider/fake/FakeHashProvider';
+import IHasProvider from '@shared/container/HashProvider/model/IHashProvider';
+import FakeHashProvider from '@shared/container/HashProvider/fake/FakeHashProvider';
 
 let fakeCompanyRepository: FakeCompanyRepository;
 let createCompanyService: CreateCompanyService;

@@ -57,21 +57,23 @@ export default class CreatBankAccaountTable1602692890347
             default: 'now()',
           },
         ],
-        foreignKeys: [
-          new TableForeignKey({
-            name: 'ForeingKeyCompany',
-            columnNames: ['company_Id'],
-            referencedColumnNames: ['id'],
-            referencedTableName: 'company',
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          }),
-        ],
+      }),
+    );
+    await queryRunner.createForeignKey(
+      'bankAccount',
+      new TableForeignKey({
+        name: 'foreingKeyCompany',
+        columnNames: ['company_Id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'company',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropForeignKey('bankAccount', 'foreingKeyCompany');
     await queryRunner.dropTable('bankAccount');
   }
 }
