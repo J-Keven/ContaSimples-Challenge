@@ -3,7 +3,7 @@ import Transaction from '@modules/transactions/infra/typeorm/entities/Transactio
 import ICompanyRepository from '@modules/company/repositories/ICompanyRepository';
 import ITransactionRepository from '@modules/transactions/repositories/ITransactionRepository';
 import AppError from '@shared/errors/AppError';
-import ICardRepository from '@modules/cards/repositories/ICardRepository';
+import ICardRepository from '@modules/cards/repositories/ICardsRepository';
 import getEndOfCardNumber from './utils/getEndOfCardNumber';
 
 interface IRequestDTO {
@@ -47,6 +47,13 @@ class CreateTransactionService {
     company_Id,
     cardNumber,
   }: IRequestDTO): Promise<IResponseDTO> {
+    if (cardNumber.split(' ').length !== 4) {
+      throw new AppError('This number of cart is invalid');
+    }
+
+    if (cardNumber.split(' ').join('').length !== 16) {
+      throw new AppError('This number of cart is invalid');
+    }
     const company = await this.companyRepository.findById(company_Id);
 
     if (!company) {

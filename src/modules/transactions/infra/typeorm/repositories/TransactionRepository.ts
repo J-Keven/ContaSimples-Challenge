@@ -5,6 +5,7 @@ import Transactions from '@modules/transactions/infra/typeorm/entities/Transacti
 import ITransactionRepository from '@modules/transactions/repositories/ITransactionRepository';
 import IFindAllInDayFromCompanyDTO from '@modules/transactions/dtos/IFindAllInDayFromCompanyDTO';
 import IFindAllInMonthFromCompanyDTO from '@modules/transactions/dtos/IFindAllInMonthFromCompanyDTO';
+import IFindAllWithCardFromCompanyDTO from '@modules/transactions/dtos/IFindAllWithCardFromCompanyDTO';
 
 class TransactionRepository implements ITransactionRepository {
   private ormRepository: Repository<Transactions>;
@@ -58,6 +59,20 @@ class TransactionRepository implements ITransactionRepository {
         type,
       },
     });
+    return transactions;
+  }
+
+  public async findAllWithCardFromCompany({
+    cardNumber,
+    company_Id,
+  }: IFindAllWithCardFromCompanyDTO): Promise<Transactions[]> {
+    const transactions = await this.ormRepository.find({
+      where: {
+        company_Id,
+        cardNumber,
+      },
+    });
+
     return transactions;
   }
 

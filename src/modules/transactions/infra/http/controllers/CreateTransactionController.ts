@@ -27,7 +27,7 @@ class TransactionService {
       establishment,
     });
 
-    return response.json(transaction);
+    return response.status(201).json(transaction);
   }
 }
 

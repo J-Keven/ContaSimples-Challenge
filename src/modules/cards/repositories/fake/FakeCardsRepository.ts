@@ -1,7 +1,7 @@
 import Cards from '@modules/cards/infra/typeorm/entities/Cards';
 import ICreateCardDTO from '@modules/cards/dtos/ICreateCardDTO';
 import IFindByNumberDTO from '@modules/cards/dtos/IFindByNumberDTO';
-import ICardRepository from '../ICardRepository';
+import ICardRepository from '../ICardsRepository';
 
 class FakeCardsRepository implements ICardRepository {
   private cards: Cards[] = [];
@@ -14,6 +14,11 @@ class FakeCardsRepository implements ICardRepository {
       item => item.cardNumber === number && item.company_Id === company_Id,
     );
     return card;
+  }
+
+  public async listAllWithCompanyId(company_Id: string): Promise<Cards[]> {
+    const cards = this.cards.filter(card => card.company_Id === company_Id);
+    return cards;
   }
 
   public async create({

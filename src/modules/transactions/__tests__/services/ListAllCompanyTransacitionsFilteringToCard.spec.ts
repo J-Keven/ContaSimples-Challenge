@@ -1,5 +1,5 @@
-import FakeCardRepository from '@modules/cards/repositories/fake/FakeCardRepository';
-import ICardRepository from '@modules/cards/repositories/ICardRepository';
+import FakeCardRepository from '@modules/cards/repositories/fake/FakeCardsRepository';
+import ICardRepository from '@modules/cards/repositories/ICardsRepository';
 import ICompanyRepository from '@modules/company/repositories/ICompanyRepository';
 import ITransactionRepository from '@modules/transactions/repositories/ITransactionRepository';
 import FakeTransactionRepository from '@modules/transactions/repositories/fake/FakeTransactionRepository';
@@ -11,6 +11,7 @@ let fakeCardRepository: ICardRepository;
 let fakeCompanyRepository: ICompanyRepository;
 let fakeTransactionRepository: ITransactionRepository;
 let listAllCompanyTransacitionFilteringToCard: ListAllCompanyTransacitionFilteringToCard;
+
 describe('ListAllCompanyTransacitionFilteringToCard', () => {
   beforeEach(() => {
     fakeCardRepository = new FakeCardRepository();
@@ -152,6 +153,52 @@ describe('ListAllCompanyTransacitionFilteringToCard', () => {
     await expect(
       listAllCompanyTransacitionFilteringToCard.execute({
         cardNumber: '0000 0000 0000 0000',
+        company_Id: company.id,
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be albe to list all transaction filtiring by cart if format card number  is invalid', async () => {
+    const company = await fakeCompanyRepository.create({
+      cnpj: 'compane-cnpj',
+      email: 'company@example.cpm',
+      name: 'EMPRESA S/A',
+      password: '123456',
+    });
+
+    const card1 = await fakeCardRepository.create({
+      cardName: 'debit card',
+      cardNumber: '1234 1234 1234 1234',
+      ccv: 123,
+      company_Id: company.id,
+    });
+
+    await expect(
+      listAllCompanyTransacitionFilteringToCard.execute({
+        cardNumber: '',
+        company_Id: company.id,
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be albe to list all transaction filtiring by cart if card number is invalid', async () => {
+    const company = await fakeCompanyRepository.create({
+      cnpj: 'compane-cnpj',
+      email: 'company@example.cpm',
+      name: 'EMPRESA S/A',
+      password: '123456',
+    });
+
+    const card1 = await fakeCardRepository.create({
+      cardName: 'debit card',
+      cardNumber: '1234 1234 1234 1234',
+      ccv: 123,
+      company_Id: company.id,
+    });
+
+    await expect(
+      listAllCompanyTransacitionFilteringToCard.execute({
+        cardNumber: '1234 1234 1234 12',
         company_Id: company.id,
       }),
     ).rejects.toBeInstanceOf(AppError);

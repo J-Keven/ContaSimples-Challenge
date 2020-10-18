@@ -3,7 +3,7 @@ import Transaction from '@modules/transactions/infra/typeorm/entities/Transactio
 import ICompanyRepository from '@modules/company/repositories/ICompanyRepository';
 import ITransactionRepository from '@modules/transactions/repositories/ITransactionRepository';
 import AppError from '@shared/errors/AppError';
-import ICardRepository from '@modules/cards/repositories/ICardRepository';
+import ICardRepository from '@modules/cards/repositories/ICardsRepository';
 import getEndOfCardNumber from './utils/getEndOfCardNumber';
 
 interface IRequestDTO {
@@ -69,17 +69,18 @@ class CreateTransactionService {
       throw new AppError('insufficient balance');
     }
 
+    // as validações abaixos são falidações fake, apenas para manter um padrão.
     if (trasactionType.toUpperCase() === 'CARD') {
       if (!cardNumber) {
         throw new AppError('Number of card is required');
       }
 
       if (cardNumber.split(' ').length !== 4) {
-        throw new AppError('The card format is invalid');
+        throw new AppError('This number of card is invalid');
       }
 
       if (cardNumber.split(' ').join('').length !== 16) {
-        throw new AppError('The card number is invalid');
+        throw new AppError('This number of card is invalid');
       }
 
       const card = await this.cardRepository.findByNumber({

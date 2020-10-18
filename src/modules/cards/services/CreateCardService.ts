@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import ICompanyRepository from '@modules/company/repositories/ICompanyRepository';
 import AppError from '@shared/errors/AppError';
-import ICardRepository from '../repositories/ICardRepository';
+import ICardRepository from '../repositories/ICardsRepository';
 import Cards from '../infra/typeorm/entities/Cards';
 
 interface IRequestDTO {

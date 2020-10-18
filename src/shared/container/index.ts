@@ -9,8 +9,8 @@ import BankAccountRepository from '@modules/company/infra/typeorm/repositories/B
 import ITransactionRepostory from '@modules/transactions/repositories/ITransactionRepository';
 import TransactionRepository from '@modules/transactions/infra/typeorm/repositories/TransactionRepository';
 
-import ICardsRepository from '@modules/cards/repositories/ICardRepository';
-import CardsRepository from '@modules/cards/infra/typeorm/repositories/CardRepository';
+import ICardsRepository from '@modules/cards/repositories/ICardsRepository';
+import CardsRepository from '@modules/cards/infra/typeorm/repositories/CardsRepository';
 import '@modules/company/infra/providers';
 
 container.registerSingleton<ICompanyRepository>(

@@ -5,8 +5,8 @@ import ITransactionRepository from '@modules/transactions/repositories/ITransact
 import IComapnyRepository from '@modules/company/repositories/ICompanyRepository';
 import IBankAccountRepository from '@modules/company/repositories/IBankAccountRepository';
 import FakeBankAccountRepository from '@modules/company/repositories/fake/FakeBankAccountRepository';
-import ICardRepository from '@modules/cards/repositories/ICardRepository';
-import FakeCardRepository from '@modules/cards/repositories/fake/FakeCardRepository';
+import ICardRepository from '@modules/cards/repositories/ICardsRepository';
+import FakeCardRepository from '@modules/cards/repositories/fake/FakeCardsRepository';
 import AppError from '@shared/errors/AppError';
 
 let fakeTransactionRepository: ITransactionRepository;

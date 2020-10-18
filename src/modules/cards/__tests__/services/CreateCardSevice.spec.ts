@@ -1,5 +1,5 @@
-import ICardReporsitory from '@modules/cards/repositories/ICardRepository';
-import FakeCardReporsitory from '@modules/cards/repositories/fake/FakeCardRepository';
+import ICardReporsitory from '@modules/cards/repositories/ICardsRepository';
+import FakeCardReporsitory from '@modules/cards/repositories/fake/FakeCardsRepository';
 import ICompanyRepository from '@modules/company/repositories/ICompanyRepository';
 import FakeCompanyRepository from '@modules/company/repositories/fake/FakeCompanyRepository';
 import CreateCardService from '@modules/cards/services/CreateCardService';
