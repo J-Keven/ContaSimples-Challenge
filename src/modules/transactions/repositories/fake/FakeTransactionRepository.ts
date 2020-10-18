@@ -70,7 +70,7 @@ class FakeTransactionRepository implements ITransactionRepository {
     company_Id,
   }: IFindAllWithCardFromCompanyDTO): Promise<Transaction[]> {
     const transaction = this.trasactions.filter(
-      item => item.company_Id && item.cardNumber === cardNumber,
+      item => item.company_Id === company_Id && item.cardNumber === cardNumber,
     );
 
     return transaction;

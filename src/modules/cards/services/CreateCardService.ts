@@ -43,7 +43,10 @@ class CreateCardService {
       throw new AppError('Comapny not found');
     }
 
-    const cardExist = await this.cardRepository.findByNumber(cardNumber);
+    const cardExist = await this.cardRepository.findByNumber({
+      company_Id,
+      number: cardNumber,
+    });
 
     if (cardExist) {
       throw new AppError('There is already a card registered with that number');

@@ -53,13 +53,20 @@ class CreateTransactionService {
       throw new AppError('Company not found');
     }
 
+    const card = await this.cardRepository.findByNumber({
+      company_Id,
+      number: cardNumber,
+    });
+    if (!card) {
+      throw new AppError('None card fund with this number');
+    }
+
     const transactions = await this.transactionRepository.findAllWithCardFromCompany(
       {
         company_Id,
         cardNumber,
       },
     );
-
     const response = transactions.map(transaction => {
       const endOfCard = transaction.cardNumber
         ? getEndOfCardNumber(transaction.cardNumber)
@@ -72,7 +79,6 @@ class CreateTransactionService {
         endOfCard,
       };
     });
-
     return response;
   }
 }

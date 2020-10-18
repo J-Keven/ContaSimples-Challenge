@@ -82,7 +82,10 @@ class CreateTransactionService {
         throw new AppError('The card number is invalid');
       }
 
-      const card = await this.cardRepository.findByNumber(cardNumber);
+      const card = await this.cardRepository.findByNumber({
+        company_Id,
+        number: cardNumber,
+      });
 
       if (!card) {
         throw new AppError('Card non exist', 401);
