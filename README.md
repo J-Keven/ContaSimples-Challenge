@@ -3,16 +3,16 @@
 </div>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/J-Keven/gobarber-api?color=blue">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/J-Keven/ContaSimples-Challenge/?color=blue">
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
 
-  <a href="https://github.com/J-keven/gobarber-api/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/J-Keven/gobarber-api?style=social">
+  <a href="https://github.com/J-keven/ContaSimples-Challenge//stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/J-Keven/ContaSimples-Challenge/?style=social">
   </a>
 
-  <a href="https://github.com/J-Keven/Gobarber-api/network/members">
-    <img alt="Stargazers" src="https://img.shields.io/github/forks/J-keven/gobarber-api?style=social">
+  <a href="https://github.com/J-Keven/ContaSimples-Challenge//network/members">
+    <img alt="Stargazers" src="https://img.shields.io/github/forks/J-keven/ContaSimples-Challenge/?style=social">
   </a>
 </p>
 
@@ -56,12 +56,12 @@ Data de Transação e flag de "Crédito" e "Débito";
 1. Faça um clone desse projeto:
 
 ```sh
-  $ git clone https://github.com/J-Keven/gobarber-api.git
+  $ git clone https://github.com/J-Keven/ContaSimples-Challenge/.git
 ```
 
 2. Entre na pasta da aplicação:
   ```sh
-    $ cd gobarber-api
+    $ cd ContaSimples-Challenge/
   ```
 3. Alterando as informações de conexão com o Banco:
   > É essencial que essas alterações sejam feitas para que a aplicação possa se conectar no banco.

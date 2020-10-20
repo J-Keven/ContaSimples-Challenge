@@ -36,7 +36,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   Essa rota possoue três endoits para filtrar as transações, sao eles:
 
-  ##### /day
+  #### /day
 
   Retorna Todas as transações realizadas em uma determinado dia. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
@@ -73,7 +73,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
   ```
   Nesta requisição estamos pedindo que liste todas as transações do tipo CREDITO realizadas no dia 17 de Outubro de 2020.
 
-  ##### /month
+  #### /month
 
   Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
@@ -106,7 +106,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
     ```
   Nesta requisição estamos pedindo que liste todas as transações do tipo CREDITO realizadas no mes de Outubro de 2020.
 
-  ##### /card
+  #### /card
 
   Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
