@@ -26,6 +26,16 @@ class BankAccountRepository implements IBankAccountRepository {
     return bankAccount;
   }
 
+  public async findByCompnayId(
+    company_Id: string,
+  ): Promise<BankAccount | undefined> {
+    const bankAccount = await this.ormRepository.findOne({
+      where: { company_Id },
+    });
+
+    return bankAccount;
+  }
+
   public async create({
     BankNumber,
     accountDigit,

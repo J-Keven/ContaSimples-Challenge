@@ -9,9 +9,8 @@ import generateNumber from './utils/generateNumber';
 interface IRequestDTO {
   company_Id: string;
 }
-
 @injectable()
-class CreateBankAccauntService {
+class GetCompanieAccountBankDataService {
   private bankAccountRepository: IBankAccountRepository;
 
   private companyRepository: ICompanyRepository;
@@ -26,32 +25,19 @@ class CreateBankAccauntService {
     this.companyRepository = companyRepository;
   }
 
-  public async execute({ company_Id }: IRequestDTO): Promise<BankAccount> {
+  public async execute(company_Id: string): Promise<BankAccount | undefined> {
     const companyExist = await this.companyRepository.findById(company_Id);
+
     if (!companyExist) {
       throw new AppError('Company not found');
     }
 
-    const account = await this.bankAccountRepository.findAllAccounts();
-
-    const accountNumbers = account.map(item => item.accountNumber);
-
-    const accountNumber = generateAccountNumber(accountNumbers);
-
-    const accountDigit = generateNumber({ max: 99, min: 1 })
-      .toString()
-      .padStart(2, '0');
-
-    const bankAccount = await this.bankAccountRepository.create({
+    const bankAccount = await this.bankAccountRepository.findByCompnayId(
       company_Id,
-      BankNumber: 999,
-      bankName: 'CONTA SIMPLES',
-      agencyNumber: 1,
-      accountNumber,
-      accountDigit,
-    });
+    );
+
     return bankAccount;
   }
 }
 
-export default CreateBankAccauntService;
+export default GetCompanieAccountBankDataService;

@@ -76,7 +76,7 @@ class CreateTransactionService {
       }
 
       if (cardNumber.split(' ').length !== 4) {
-        throw new AppError('This number of card is invalid');
+        throw new AppError('This fromat number of card is invalid');
       }
 
       if (cardNumber.split(' ').join('').length !== 16) {
@@ -96,11 +96,11 @@ class CreateTransactionService {
     const transaction = await this.transactionRepository.create({
       company_Id,
       description,
-      trasactionType,
+      trasactionType: trasactionType.toUpperCase(),
       value,
       establishment,
       cardNumber,
-      type,
+      type: type.toUpperCase() as 'DEBIT' | 'CREDIT',
     });
 
     const endOfCard = transaction.cardNumber

@@ -43,7 +43,7 @@ class CardsRepository implements ICardRepository {
       company_Id,
     });
 
-    this.ormRepository.save(card);
+    await this.ormRepository.save(card);
 
     return card;
   }

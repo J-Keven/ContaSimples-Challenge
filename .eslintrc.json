@@ -29,6 +29,7 @@
       "no-loop-func": "off",
       "camelcase": "off",
       "no-param-reassign": "off",
+      "no-await-in-loop": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

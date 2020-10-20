@@ -48,7 +48,7 @@ class CreateTransactionService {
     cardNumber,
   }: IRequestDTO): Promise<IResponseDTO> {
     if (cardNumber.split(' ').length !== 4) {
-      throw new AppError('This number of cart is invalid');
+      throw new AppError('This format of nuumber the cart is invalid');
     }
 
     if (cardNumber.split(' ').join('').length !== 16) {
@@ -64,6 +64,7 @@ class CreateTransactionService {
       company_Id,
       number: cardNumber,
     });
+
     if (!card) {
       throw new AppError('None card fund with this number');
     }

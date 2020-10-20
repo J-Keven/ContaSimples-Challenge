@@ -27,6 +27,16 @@ class BankAccountRepositry implements IBankAccountRepositry {
     return bankAccaount;
   }
 
+  public async findByCompnayId(
+    company_Id: string,
+  ): Promise<BankAccount | undefined> {
+    const bankAccount = this.bankAccouts.find(
+      account => account.company_Id === company_Id,
+    );
+
+    return bankAccount;
+  }
+
   public async create({
     BankNumber,
     accountDigit,

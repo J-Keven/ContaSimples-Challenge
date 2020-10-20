@@ -11,7 +11,7 @@ let createSessionService: CreateSessionService;
 let fakeHashProvider: IHasProvider;
 let fakeTokenProvider: ITokenProvider;
 
-describe('CreateCompanyService', () => {
+describe('CreateSession', () => {
   beforeEach(() => {
     fakeCompanyRepository = new FakeCompanyRepository();
     fakeHashProvider = new FakeHashProvider();
@@ -41,6 +41,7 @@ describe('CreateCompanyService', () => {
     expect(createToken).toBeCalledWith(company);
     expect(session.company.id).toBe(company.id);
   });
+
   it('should be able to create a login session for a company with email or password incorrect', async () => {
     const company = await fakeCompanyRepository.create({
       name: 'EMPRESA s/a',

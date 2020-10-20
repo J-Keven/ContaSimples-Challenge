@@ -4,6 +4,8 @@ import IHashProvider from '../../../shared/container/HashProvider/model/IHashPro
 import ITokenProvider from '../infra/providers/TokenProvider/models/ITokenProvider';
 import Company from '../infra/typeorm/entities/Company';
 import ICompanyRepository from '../repositories/ICompanyRepository';
+import IBankAccountRepository from '../repositories/IBankAccountRepository';
+import BankAccount from '../infra/typeorm/entities/BankAccount';
 
 interface IRequestDTO {
   cnpj: string;
@@ -51,7 +53,6 @@ class CreateSessionService {
     if (!isPassword) {
       throw new AppError('Cnpj/password incorrect');
     }
-
     const token = await this.tokenProvider.create(company);
 
     return {

@@ -14,6 +14,7 @@ class CardController {
       ccv,
       company_Id,
     });
+
     return response.status(201).json(card);
   }
 }

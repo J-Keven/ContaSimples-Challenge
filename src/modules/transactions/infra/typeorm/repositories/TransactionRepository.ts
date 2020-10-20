@@ -15,9 +15,11 @@ class TransactionRepository implements ITransactionRepository {
   }
 
   public async findLasTransaction(company_Id: string): Promise<Transactions> {
-    // const transaction = await this.ormRepository.find()
-    // Falta terminar
-    return new Transactions();
+    const transaction = await this.ormRepository.find({
+      where: { company_Id },
+    });
+
+    return transaction[0];
   }
 
   public async findAllInDayFromCompany({

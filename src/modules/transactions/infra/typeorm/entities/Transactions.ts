@@ -36,7 +36,7 @@ class Transactions {
   @Column()
   company_Id: string;
 
-  @ManyToOne(() => Company, company => company.id, { eager: true })
+  @ManyToOne(() => Company, company => company.id)
   @JoinColumn({ name: 'company_Id' })
   company: Company;
 
