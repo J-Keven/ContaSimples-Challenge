@@ -4,11 +4,11 @@
 
 Está rota é responsável por acessar o recurso de transaçãoes.
 
-> :Importante: Após um derterminado tempo de uso é indicado que faça login novamente, pois o token pode expirar.
+> 🔥  Após um derterminado tempo de uso é indicado que faça login novamente, pois o token pode expirar.
 
 ### Requisição
 
-  Esse recurso é uma rota privada, etão é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization**.
+  Esse recurso é uma rota privada, então é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization** contendo o teken de autenticação.
 
  > Campos que devem ser passados no cabeçalho(header) da requisição:
 
@@ -28,7 +28,7 @@ Está rota é responsável por acessar o recurso de transaçãoes.
     }
   ```
 
-  Vocẽ pode criar uma nova transação fazendo uma requisição pra esta rota com o metodo **POST** passando os seguintes parâmetros:
+  Vocẽ pode criar uma nova transação fazendo uma requisição para esta rota com o método **POST** passando os seguintes parâmetros:
 
   Nome do campo  | tipo   | Obrigatório
   ------- | ------ | -----------
@@ -40,10 +40,10 @@ Está rota é responsável por acessar o recurso de transaçãoes.
   type           | string |  sim
 
   - ```description``` -> Este campo deve conter uma descrição para a transação.
-  - ```trasactionType``` -> Este campo deve conter o tipo de transação que sera realizado. Ex: TED, PIX, DOC e etc... Também aceita o tipo ```CARD```, que indica que essa transação sera feita utilizando um dos cartões cadastrados da empresa.
+  - ```trasactionType``` -> Este campo deve conter o tipo de transação que sera realizado. Ex: TED, PIX, DOC e etc... Também aceita o tipo ```CARD```, que indica que essa transação sera feita utilizando um dos cartões cadastrados na conta da empresa.
   - ```value``` -> Este campo deve conter o valor da transação.
   - ```type``` ->  Este campo deve conter o tipo da transação, se é uma transação de DEBITO ou CREDITO. Para transações de debito utilize ```debt``` e para transações de credito utilize ```credit```.
-  - ```cardNumber``` -> Este é um parâmetro opcional, mas passa a ser obigatório para transações com cartões, ou seja ```trasactionType``` igual a ```CARD```.
+  - ```cardNumber``` -> Este é um parâmetro opcional, mas passa a ser obigatório para transações com cartões, ou seja ```trasactionType``` igual a ```CARD```. Ele deve conter o numero do cartão que foi utilizado para fazer a transação.
   - ```establishment``` -> Esse é um parametro opcional, ele deve conter o nome do estabelecimeto que para o qual foi feita a transação.
 
   > Exemplo de uma estrutra json para fazer uma requisição nessa rota:
@@ -75,25 +75,25 @@ Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/a
   created_at     | string
   updated_at     | string
 
- - ```id``` -> Contém o um um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
+ - ```id``` -> Contém um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
 
   - ```company_Id``` -> Contém o um valor do tipo uuid que representa o id da empresa que realizou a transação.
 
-  - ```description``` -> Contem a descrição da transação.
+  - ```description``` -> Contém a descrição da transação.
 
-  - ```trasactionType``` -> Contem o tipo que foi utilizado para realizar a transação. EX: TED, PIX.
+  - ```trasactionType``` -> Contém o tipo que foi utilizado para realizar a transação. EX: TED, PIX, DOC e etc.
 
-  - ```type``` -> Contem o metodo(tipo) da transação, se foi uma transação do tipo cretido ou debito.
+  - ```type``` -> Contém o método(tipo) da transação, se foi uma transação do tipo cretido ou debito.
 
-  - ```value``` -> Contem o valor da transação.
+  - ```value``` -> Contém o valor da transação.
 
-  - ```endOfCard``` -> Contem os 4 digitos finais do numero do cartão caso a transação tenha sido com o cartão, caso n teha sido com o cartão, o valor serar ```null```.
+  - ```endOfCard``` -> Contém os 4 digitos finais do numero do cartão caso a transação tenha sido com o cartão, caso não teha sido com o cartão, o valor serar ```null```.
 
-  - ```establishment``` -> O nome do estabelecimento que para o qual foi feita a transação, Como esse é um parametro opcional, é posivil que seu valor sejo ```null```.
+  - ```establishment``` -> O nome do estabelecimento que para o qual foi feita a transação, Como esse é um parametro opcional, é posiveil que seu valor sejo ```null```.
 
-  - ```created_at``` -> Contem uma data data em que a conta foi criada. Essa data esta no formato timestamp.
+  - ```created_at``` -> Contém uma data data em que a conta foi criada. Essa data esta no formato timestamp.
 
-  - ```updated_at``` -> Contem uma data da ultima alteração feita nos dados cadastrados da empresa. Essa data esta no formato timestamp.
+  - ```updated_at``` -> Contém uma data da ultima alteração feita nos dados cadastrados da empresa. Essa data esta no formato timestamp.
 
 
 > emxemplo de  estrutura json obtido com a rerposta que a aplicação retorna ao acessar essa rota.
@@ -116,7 +116,7 @@ Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/a
 
 Depedendo dos dados enviados na requisição, a aplicação pode retornar um erro. Os seguintes erros podem acontecer.
 
-- ```Comapny not found``` -> Esse erro e retornado quando o o token repassado no cabeçalho da requisição pertencer a uma conta que já não existe na aplicação, Ex: Uma empresa resolver deletar sua conta, o token dela não deve mais servir para ser utilizado nas rotas.
+- ```Comapny not found``` -> Esse erro e retornado quando o token repassado no cabeçalho da requisição pertencer a uma conta que já não existe na aplicação, Ex: Uma empresa resolver deletar sua conta, o token dela não deve mais servir para ser utilizado nas rotas.
 
 - ```insufficient balance``` -> Esse erro pode acontecer quando uma requisição para transação do tipo DEBITO é feita, mas o saldo da empresa é isuficiente. Esse erro vem aconpahado de um satus code de 400.
 

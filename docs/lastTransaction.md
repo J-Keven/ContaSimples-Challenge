@@ -8,7 +8,7 @@ Está rota é responsável por acessar o recurso de transaçãoes.
 
 ### Requisição
 
-  Esse recurso é uma rota privada, etão é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization**.
+  Esse recurso é uma rota privada, então é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization** contendo o teken de autenticação.
 
  > Campos que devem ser passados no cabeçalho(header) da requisição:
 

@@ -3,7 +3,7 @@
 > Para acessar essa rota utilize a url: http://localhost:3333/companies
 
 Está rota é responsável por criar uma conta para uma empresa na aplicação.
-A partir desat conta é que a empresa porderar fazer login, realizar transações, adicionar cartões e ver seu saldo.
+A partir deste conta é que a empresa porderar fazer login, realizar transações, adicionar cartões e ver seu saldo.
 
 ### Requisição
   Para ter acesso a esse recurso da aplicação é necessario fazer uma requisição do tipo **POST** na rota **/companies** passando os seguintes campos no **corpo da requisição(body)**
@@ -23,7 +23,7 @@ A partir desat conta é que a empresa porderar fazer login, realizar transaçõe
 
   - ```email``` -> Este capo recebe o email que será usado para envio de email.
 
-  - ```password``` -> este campo recebe a senha para fazer login na aplicação.
+  - ```password``` -> Este campo recebe a senha para fazer login na aplicação.
 
   > Exemplo da extrutura json para fazer um requisição para essa rota.
 
@@ -39,7 +39,7 @@ A partir desat conta é que a empresa porderar fazer login, realizar transaçõe
 
 Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/api.html#res) ou um erro.
 
-Se todos os os campos dados enviadso senjam válidos, a rota retorna uma resposta contendo os dados da conta da empresa na aplicação e os dados da conta bancária.
+Se todos os dados enviadso for válidos, a rota retorna uma resposta contendo os dados da conta da empresa na aplicação e os dados da conta bancária.
 
 > A resposta contem os seguintes campos
 
@@ -57,22 +57,22 @@ Nome do campo  | tipo
   accountNumber | string |
   accountDigit  | string |
 
-   - ```name``` -> O campo name recebe o nome da empresa.
+   - ```name``` -> O campo name rcontém nome da empresa.
 
-   - ```cnpj``` -> Contém o o cnpj da empresa. O cnpj será utilizado para fazer login na aplicação, juntamente com a senha passado no campo **password** ao fazer a requisição.
+   - ```cnpj``` -> Contém o cnpj da empresa. O cnpj será utilizado para fazer login na aplicação, juntamente com a senha passado no campo **password** ao fazer a requisição.
 
   - ```email``` -> Contém o email que será usado para futuro envio de emails.
-  - ```id``` -> Contém o um um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
+  - ```id``` -> Contém um valor do tipo uuid que representa o id da tupla em que os dados estão salvos no banco.
 
-  - ```created_at``` -> Contem uma data data em que a conta foi criada. Essa data esta no formato timestamp.
+  - ```created_at``` -> Contem a data data em que a conta foi criada. Essa data está no formato timestamp.
 
-  - ```updated_at``` -> Contem uma data da ultima alteração feita nos dados cadastrados da empresa. Essa data esta no formato timestamp.
+  - ```updated_at``` -> Contem a data da ultima alteração feita nos dados cadastrados da empresa. Essa data esta no formato timestamp.
 
 - ```BankNumber``` -> Contém o numero do Banco no qual a conta bancária pertence.
 
 - ```accountNumber``` -> Contem o número da conta bancária da empresa.
 
-- ```accountDigit``` -> Contem o digito bancária da empresa.
+- ```accountDigit``` -> Contem o digito da conta bancária da empresa.
 
 > emxemplo de  estrutura json obtido com a rerposta que a aplicação retorna ao acessar essa rota.
 
@@ -103,7 +103,6 @@ Nome do campo  | tipo
 
 Depedendo dos dados enviados na requisição, a aplicação pode retornar um erro. Os seguintes erros podem acontecer.
 
-- ```there is already a company registered with this cnpj``` -> Esse erro vem com o código http 400. Esse erro é gerado caso o cnpj enviado na requisição ja tenha sido cadastrado antes.
+- ```there is already a company registered with this cnpj``` -> Esse erro vem com o código http 400. Esse erro é gerado caso o cnpj enviado na requisição já tenha sido cadastrado antes.
 
 - ```there is already a company registered with this email``` -> Esse erro vem com o código http 400. Esse erro é gerado caso o email utilizado para criar a conta já esteja sendo usado por outra empresa.
-

@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn tsc",
-    "start": "yarn build && node ./dist/shared/infra/http/server.js",
+    "start": "yarn orm migration:run && yarn dev:start",
     "dev:start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "test": "jest",
     "orm": "ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js"

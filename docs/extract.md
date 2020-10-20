@@ -8,7 +8,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
 ### Requisição
 
-  Esse recurso é uma rota privada, etão é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization**.
+  Esse recurso é uma rota privada, então é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization** contendo o teken de autenticação.
 
  > Campos que devem ser passados no cabeçalho(header) da requisição:
 
@@ -37,6 +37,8 @@ Está rota é responsável por retornar um extrato das transações relizadas po
   Essa rota possoue três endoits para filtrar as transações, sao eles:
 
   #### /day
+
+  > url: http://localhost:3333/extract/day
 
   Retorna Todas as transações realizadas em uma determinado dia. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
@@ -75,6 +77,8 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   #### /month
 
+> http://localhost:3333/extract/month
+
   Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
   > Campos que devem ser passados no corpo(body) da requisição:
@@ -108,6 +112,8 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   #### /card
 
+  > http://localhost:3333/extract/card
+
   Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
   > Campos que devem ser passados no corpo(body) da requisição:
@@ -117,7 +123,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
   cardNumber | string |  sim
 
 
-  - ```cardNumber``` -> Este campo deve conter o numero do cartão que desej listar as transacções realizadas.
+  - ```cardNumber``` -> Este campo deve conter o numero do cartão que deseja listar as transacções realizadas.
 
   > OBS: O numero do cartão deve ser enviado seguido este padrão 0000 0000 0000 0000. Caso o número não siga esse padrão, a aplicação ira retornar um erro.
 
@@ -149,7 +155,7 @@ Nome do campo | tipo
   created_at | string |
   updated_at | string |
 
-  - ```id``` -> Contém o um um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
+  - ```id``` -> Contém o um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
 
   - ```company_Id``` -> Contém o um valor do tipo uuid que representa o id da empresa que realizou a transação.
 

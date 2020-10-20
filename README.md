@@ -3,16 +3,16 @@
 </div>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/J-Keven/ContaSimples-Challenge/?color=blue">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/J-Keven/ContaSimples-Challenge?color=blue">
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
 
-  <a href="https://github.com/J-keven/ContaSimples-Challenge//stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/J-Keven/ContaSimples-Challenge/?style=social">
+  <a href="https://github.com/J-keven/ContaSimples-Challenge/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/J-Keven/ContaSimples-Challenge?style=social">
   </a>
 
-  <a href="https://github.com/J-Keven/ContaSimples-Challenge//network/members">
-    <img alt="Stargazers" src="https://img.shields.io/github/forks/J-keven/ContaSimples-Challenge/?style=social">
+  <a href="https://github.com/J-Keven/ContaSimples-Challenge/network/members">
+    <img alt="Stargazers" src="https://img.shields.io/github/forks/J-keven/ContaSimples-Challenge?style=social">
   </a>
 </p>
 
@@ -36,7 +36,7 @@ A aplicação desenvolvida atende os seguintes requisitos:
 - A empresa deve ser capaz de criar uma conta na aplicação;
 - A empresa deve ser capaz de fazer login na aplicação;
 - A empresa deve ser capaz de consultar seu saldo;
-- A empresa deve ser capaz de obter um extrato de saus transões -> filtradas por
+- A empresa deve ser capaz de obter um extrato de saus transações -> filtradas por
 Data de Transação e flag de "Crédito" e "Débito";
 - A empresa deve ser capaz de obter a sua última transação realizada;
 - A empresa deve ser capaz de onbter todas as sua transações realizadas com um determinado cartão;
@@ -56,15 +56,15 @@ Data de Transação e flag de "Crédito" e "Débito";
 1. Faça um clone desse projeto:
 
 ```sh
-  $ git clone https://github.com/J-Keven/ContaSimples-Challenge/.git
+  $ git clone https://github.com/J-Keven/ContaSimples-Challenge.git
 ```
 
 2. Entre na pasta da aplicação:
   ```sh
-    $ cd ContaSimples-Challenge/
+    $ cd ContaSimples-Challenge
   ```
 3. Alterando as informações de conexão com o Banco:
-  > É essencial que essas alterações sejam feitas para que a aplicação possa se conectar no banco.
+  > 🔥 É essencial que essas alterações sejam feitas para que a aplicação possa se conectar banco de dados.
 
   - Abra o arquivo ``ormconfig.json`` e coloque as credenciais do seu banco.
    Ex:
@@ -90,20 +90,30 @@ Data de Transação e flag de "Crédito" e "Débito";
 
 5. Executando a Aplicação:
 ```sh
-  $ yarn dev:server
+  $ yarn start
 
   # ou
 
-  $ npm run dev:start
+  $ npm run start
+```
+
+Esse comanto ira criar as tabelas necessárioas no seu banco de dados e logo após ira inicar o servidor da aplicação. Assim que as seguntes mensagem aparecerem no seu terminal, a aplicação ja está pronta para ser usada.
+
+```
+  $ 🚀 The server is running in address http://localhost:3333
+  $ connected in database
 ```
 
 6. Executando testes:
+
   A Aplicação foi desenvolvida utlizando DDD e para cada domínio foi desenvolvido um suite de testes unitário. Caso queira executar os testes execute:
 
 ```sh
   $ yarn test
 
 ```
+  Esse comando vai execultar todos os testes e no fim exibe o covarage com os resultados dos testes.
+
 ### Utilizando a aplicação
 
 Após fazes as alterações necessárias para rodar a aplicação e executar a plicação você acessar os recursos da aplicação.
@@ -126,8 +136,8 @@ Rota | url | Método HTPP
 ---- | --- | ------
 Criar uma conta | http://localhost:3333/companies | POST
 Fazer login | http://localhost:3333/login | POST
-Cadastrar um novo cartão | http://localhost:2/cards | POST
-Cadastrar uma nova transação | http://localhost:2/transactions | POST
+Cadastrar um novo cartão | http://localhost:3333/cards | POST
+Cadastrar uma nova transação | http://localhost:3333/transactions | POST
 Lista a ultima transação realizada | http://localhost:3333/companies/me/last | GET
 Extrato das transações de um dia filtrado por cartão | http://localhost:3333/extract/day | GET
 Extrato das transações de um mês filtrado por cartão | http://localhost:3333/extract/month  | GET
@@ -159,7 +169,7 @@ Depois que o merge da sua pull request for feito, você pode deletar a sua branc
 
 ## 📝Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
 ---
 

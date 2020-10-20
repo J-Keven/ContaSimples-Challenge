@@ -8,7 +8,7 @@ Está rota é responsável por acessar o recurso de transaçãoes.
 
 ### Requisição
 
-  Esse recurso é uma rota privada, etão é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization**.
+  Esse recurso é uma rota privada, então é obrigatório enviar no **cabeçalho(header)** da requisição um parametro nomeado como **authorization** contendo o teken de autenticação.
 
  > Campos que devem ser passados no cabeçalho(header) da requisição:
 
@@ -47,9 +47,9 @@ Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/a
   created_at     | string
   updated_at     | string
 
- - ```id``` -> Contém o um um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
+ - ```id``` -> Contém um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
 
-  - ```company_Id``` -> Contém o um valor do tipo uuid que representa o id da empresa que realizou a transação.
+  - ```company_Id``` -> Contém um valor do tipo uuid que representa o id da empresa que realizou a transação.
 
   - ```description``` -> Contem a descrição da transação.
 

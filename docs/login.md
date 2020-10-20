@@ -5,6 +5,7 @@
 Está rota é responsável por fazer o login da aplicação e gerar um token JWT de autenticação que será usado para acessar as rotas privadas da aplicação.
 
 ### Requisição
+
   Para ter acesso a esse recurso da aplicação é necessario fazer uma requisição do tipo **POST** no endereço **http://localhost:3333/login** passando os seguintes campos no **corpo da requisição(body)**
 
 > Campos que deve ser passados no corpo da requisição:
@@ -28,7 +29,7 @@ Está rota é responsável por fazer o login da aplicação e gerar um token JWT
   ```
 ### Resposta
 
-A resposta retornada por essa rota é do tipo [response](https://expressjs.com/pt-br/api.html#res) e pode conter no corpo da resposta um json dois contentento os dados da aplicação juntamente com o token de altenticação que será utilado para acessar as rotas privadas ou um erro que pode ser gerado caso os dados de para login estejam incorretos.
+A resposta retornada por essa rota é do tipo [response](https://expressjs.com/pt-br/api.html#res) e pode conter no corpo da resposta um json contentento os dados da aplicação juntamente com o token de altenticação que será utilado para acessar as rotas privadas ou um erro que pode ser gerado caso os dados de para login estejam incorretos.
 
 > A resposta contem os seguintes campos
 
@@ -42,12 +43,12 @@ Nome do campo  | tipo
   updated_at  | string |
   token | string |
 
-   - ```name``` -> O campo name recebe o nome da empresa.
+   - ```name``` -> O campo name contém o nome da empresa.
 
-   - ```cnpj``` -> Contém o o cnpj da empresa. O cnpj será utilizado para fazer login na aplicação, juntamente com a senha passado no campo **password** ao fazer a requisição.
+   - ```cnpj``` -> Contém o cnpj da empresa. O cnpj será utilizado para fazer login na aplicação, juntamente com a senha passado no campo **password** ao fazer a requisição.
 
   - ```email``` -> Contém o email que será usado para futuro envio de emails.
-  - ```id``` -> Contém o um um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
+  - ```id``` -> Contém um valor do tipo uuid que representa o id da tubla em que os dados estão salvos no banco.
 
   - ```created_at``` -> Contem uma data data em que a conta foi criada. Essa data esta no formato timestamp.
 
