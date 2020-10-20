@@ -120,14 +120,14 @@ Tendo em vista os casos acima o endereço da apliação é **http://localhost:33
 
 A aplicação contém os seguintes recursos e você pode acessar cada recurso da aplicação fazendo requições http de acordo com o padrão rest.
 
-> OBS: As Urls abaixos são pra utilizar a aplicação em ambiente de desenvolvimento.
+> OBS: As Urls abaixos só poderão ser acessadas quando a aplicação estiver executando na sua maquina.
 
 Rota | url | Método HTPP
 ---- | --- | ------
 Criar uma conta | http://localhost:3333/companies | POST
 Fazer login | http://localhost:3333/login | POST
-Cadastra um cartão | http://localhost:2/cards | POST
-Cadastra uma nova transação | http://localhost:2/transactions | POST
+Cadastrar um novo cartão | http://localhost:2/cards | POST
+Cadastrar uma nova transação | http://localhost:2/transactions | POST
 Lista a ultima transação realizada | http://localhost:3333/companies/me/last | GET
 Extrato das transações de um dia filtrado por cartão | http://localhost:3333/extract/day | GET
 Extrato das transações de um mês filtrado por cartão | http://localhost:3333/extract/month  | GET
@@ -137,16 +137,16 @@ Listar o balancete da empresa | http://localhost:3333/companies/balance | GET
 
 Cada rota possui a sua documentação explicando como acessar e o que é necessário para utilizar cada recurso. Você pode ler a documentoação de cada rota em:
 
-- [Rota de criar uma conta]()
-- [Rota de fazer login]()
-- [Rota de cadastra um cartão]()
-- [Rota de cadastra uma nova transação]()
-- [Rota de lista a ultima transação realizada]()
-- [Rota de extrato das transações de um dia filtrado por cartão]()
-- [Rota de extrato das transações de um mês filtrado por cartão]()
-- [Rota de extrato das transações realizadas com um determinado cartão]()
-- [Rota de listar todos os cartões da empresa]()
-- [Rota de listar o balancete da empresa]()
+- [Rota de criar uma conta](./docs/createCompany.md)
+- [Rota de fazer login](./docs/login.md)
+- [Rota de cadastrar um novo cartão](./docs/createCard.md)
+- [Rota de cadastrar uma nova transação](./docs/createTransactions.md)
+- [Rota de lista a ultima transação realizada](./docs/lastTransaction.md)
+- [Rota de extrato das transações de um dia filtrado por cartão](./docs/extract.md#####/day)
+- [Rota de extrato das transações de um mês filtrado por cartão](./docs/extract.md#####/month)
+- [Rota de extrato das transações realizadas com um determinado cartão](./docs/extract.md#####/card)
+- [Rota de listar todos os cartões da empresa](./docs/listAllCardsOfCompany.md)
+- [Rota de listar o balancete da empresa](./docs/getBalance.md)
 
 ## 🚀 Como contribuir
 

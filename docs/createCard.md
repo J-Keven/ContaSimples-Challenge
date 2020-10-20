@@ -58,7 +58,7 @@ Está rota é responsável por adicionar un novo cartão para a empresa. Para qu
 
 ### Resposta
 
-Esta rota retorna uma responsta do tipo [response](https://responsehttp), contendo os dados do cartão cadastrado
+Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/api.html#res), contendo os dados do cartão cadastrado
 
 > A resposta contem os seguintes campos
 

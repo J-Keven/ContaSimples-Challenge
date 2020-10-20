@@ -32,7 +32,7 @@ Está rota é responsável por retornar um balancete da uma empresa.
 
 ### Resposta
 
-Esta rota retorna uma responsta do tipo [response](https://responsehttp), contendo um json com os seguintes campos:
+Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/api.html#res), contendo um json com os seguintes campos:
 
 Nome do campo   | tipo
   -------       | ------ |

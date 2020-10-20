@@ -28,7 +28,7 @@ Está rota é responsável por fazer o login da aplicação e gerar um token JWT
   ```
 ### Resposta
 
-A resposta retornada por essa rota é do tipo [response](http://express) e pode conter no corpo da resposta um json dois contentento os dados da aplicação juntamente com o token de altenticação que será utilado para acessar as rotas privadas ou um erro que pode ser gerado caso os dados de para login estejam incorretos.
+A resposta retornada por essa rota é do tipo [response](https://expressjs.com/pt-br/api.html#res) e pode conter no corpo da resposta um json dois contentento os dados da aplicação juntamente com o token de altenticação que será utilado para acessar as rotas privadas ou um erro que pode ser gerado caso os dados de para login estejam incorretos.
 
 > A resposta contem os seguintes campos
 

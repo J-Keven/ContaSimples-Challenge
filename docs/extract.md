@@ -36,104 +36,104 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   Essa rota possoue três endoits para filtrar as transações, sao eles:
 
-  - **/day**
+  ##### /day
 
-    Retorna Todas as transações realizadas em uma determinado dia. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
+  Retorna Todas as transações realizadas em uma determinado dia. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
-    > Campos que devem ser passados no corpo(body) da requisição:
+  > Campos que devem ser passados no corpo(body) da requisição:
 
-    Nome do campo  | tipo   | Obrigatório
-    ------- | ------ | -----------
-    day     | number |  sim
-    month   | number |  sim
-    year    | number |  sim
-    type    | string |  sim
-
-
-    - ```year``` -> Este campo deve conter o ano.
-    - ```month``` -> Este campo deve conter o ano.
-    - ```day``` -> Este campo deve conter o dia do mês em que deseja listar as transações realizadads.
-    - ```type``` -> Este campo deve conter o tipo das transações que desejá obter no extrato. As transações podem ser do tipo DEBITO ou CREDITO.
+  Nome do campo  | tipo   | Obrigatório
+  ------- | ------ | -----------
+  day     | number |  sim
+  month   | number |  sim
+  year    | number |  sim
+  type    | string |  sim
 
 
-    > OBS: O Ano, mes e o dia é para forma uma data do tipo dd-mm-yyyy, então a aplicação retorna todas as transações realizadas nesta data específica.
-    > O campo "type" deve receber credit para listar transações do tipo CREDITO e debit para transações do tipo DEBITO.
+  - ```year``` -> Este campo deve conter o ano.
+  - ```month``` -> Este campo deve conter o ano.
+  - ```day``` -> Este campo deve conter o dia do mês em que deseja listar as transações realizadads.
+  - ```type``` -> Este campo deve conter o tipo das transações que desejá obter no extrato. As transações podem ser do tipo DEBITO ou CREDITO.
 
-    > Exemplo da extrutura json para fazer um requisição para essa rota.
 
-    - Body
+  > OBS: O Ano, mes e o dia é para forma uma data do tipo dd-mm-yyyy, então a aplicação retorna todas as transações realizadas nesta data específica.
+  > O campo "type" deve receber credit para listar transações do tipo CREDITO e debit para transações do tipo DEBITO.
+
+  > Exemplo da extrutura json para fazer um requisição para essa rota.
+
+  - Body
+
+  ```json
+  {
+    "day": 17,
+    "month": 10,
+    "year": 2020,
+    "type": "CREDIT"
+  }
+  ```
+  Nesta requisição estamos pedindo que liste todas as transações do tipo CREDITO realizadas no dia 17 de Outubro de 2020.
+
+  ##### /month
+
+  Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
+
+  > Campos que devem ser passados no corpo(body) da requisição:
+
+  Nome do campo  | tipo   | Obrigatório
+  ------- | ------ | -----------
+  month   | number |  sim
+  type    | string |  sim
+
+
+  - ```year``` -> Este campo deve conter o ano.
+  - ```month``` -> Este campo deve conter o ano.
+  - ```type``` -> Este campo deve conter o tipo das transações que desejá obter no extrato. As transações podem ser do tipo DEBITO ou CREDITO.
+
+
+  > OBS: O Ano e o mes é para forma uma data do tipo mm-yyyy, então a aplicação retorna todas as transações realizadas neste mês específico.
+  > O campo "type" deve receber credit para listar transações do tipo CREDITO e debit para transações do tipo DEBITO.
+
+  > Exemplo da extrutura json para fazer um requisição para essa rota.
+
+  - Body
 
     ```json
     {
-	    "day": 17,
 	    "month": 10,
 	    "year": 2020,
 	    "type": "CREDIT"
     }
     ```
-    Nesta requisição estamos pedindo que liste todas as transações do tipo CREDITO realizadas no dia 17 de Outubro de 2020.
+  Nesta requisição estamos pedindo que liste todas as transações do tipo CREDITO realizadas no mes de Outubro de 2020.
 
-  - **/month**
+  ##### /card
 
-    Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
+  Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
-    > Campos que devem ser passados no corpo(body) da requisição:
+  > Campos que devem ser passados no corpo(body) da requisição:
 
-    Nome do campo  | tipo   | Obrigatório
-    ------- | ------ | -----------
-    month   | number |  sim
-    type    | string |  sim
-
-
-    - ```year``` -> Este campo deve conter o ano.
-    - ```month``` -> Este campo deve conter o ano.
-    - ```type``` -> Este campo deve conter o tipo das transações que desejá obter no extrato. As transações podem ser do tipo DEBITO ou CREDITO.
+  Nome do campo  | tipo   | Obrigatório
+  -------    | ------ | -----------
+  cardNumber | string |  sim
 
 
-    > OBS: O Ano e o mes é para forma uma data do tipo mm-yyyy, então a aplicação retorna todas as transações realizadas neste mês específico.
-    > O campo "type" deve receber credit para listar transações do tipo CREDITO e debit para transações do tipo DEBITO.
+  - ```cardNumber``` -> Este campo deve conter o numero do cartão que desej listar as transacções realizadas.
 
-    > Exemplo da extrutura json para fazer um requisição para essa rota.
+  > OBS: O numero do cartão deve ser enviado seguido este padrão 0000 0000 0000 0000. Caso o número não siga esse padrão, a aplicação ira retornar um erro.
 
-    - Body
+  > Exemplo da extrutura json para fazer um requisição para essa rota.
 
-    ```json
+  - Body
+
+  ```json
     {
-	    "month": 10,
-	    "year": 2020,
-	    "type": "CREDIT"
+      "cardNumber": "1234 5678 9123 4567"
     }
-    ```
-    Nesta requisição estamos pedindo que liste todas as transações do tipo CREDITO realizadas no mes de Outubro de 2020.
-
-    - **/card**
-
-    Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
-
-    > Campos que devem ser passados no corpo(body) da requisição:
-
-    Nome do campo  | tipo   | Obrigatório
-    -------    | ------ | -----------
-    cardNumber | string |  sim
-
-
-    - ```cardNumber``` -> Este campo deve conter o numero do cartão que desej listar as transacções realizadas.
-
-    > OBS: O numero do cartão deve ser enviado seguido este padrão 0000 0000 0000 0000. Caso o número não siga esse padrão, a aplicação ira retornar um erro.
-
-    > Exemplo da extrutura json para fazer um requisição para essa rota.
-
-    - Body
-
-    ```json
-      {
-	      "cardNumber": "1234 5678 9123 4567"
-      }
-    ```
+  ```
 
 ### Resposta
 
-Esta rota retorna uma responsta do tipo [response](https://responsehttp), contendo um vetor com todas as transações realizadas de acordo com os filtros. Cada transação vem com os seguintes campos:
+Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/api.html#res), contendo um vetor com todas as transações realizadas de acordo com os filtros. Cada transação vem com os seguintes campos:
 
 
 Nome do campo | tipo

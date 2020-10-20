@@ -37,7 +37,7 @@ A partir desat conta é que a empresa porderar fazer login, realizar transaçõe
   ```
 ### Resposta
 
-Esta rota retorna uma responsta do tipo [response](https://responsehttp) ou um erro.
+Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/api.html#res) ou um erro.
 
 Se todos os os campos dados enviadso senjam válidos, a rota retorna uma resposta contendo os dados da conta da empresa na aplicação e os dados da conta bancária.
 

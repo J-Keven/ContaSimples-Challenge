@@ -1,6 +1,6 @@
-# /transactions
+# /transactions/me/last
 
-> Para acessar essa rota utilize a url: http://localhost:3333//transactions
+> Para acessar essa rota utilize a url: http://localhost:3333/transactions
 
 Está rota é responsável por acessar o recurso de transaçãoes.
 
@@ -28,39 +28,11 @@ Está rota é responsável por acessar o recurso de transaçãoes.
     }
   ```
 
-  Vocẽ pode criar uma nova transação fazendo uma requisição pra esta rota com o metodo **POST** passando os seguintes parâmetros:
-
-  Nome do campo  | tipo   | Obrigatório
-  ------- | ------ | -----------
-  description    | string |  sim
-  trasactionType | string |  sim
-  cardNumber     | string |  não
-  establishment  | string |  não
-  value          | string |  sim
-  type           | string |  sim
-
-  - ```description``` -> Este campo deve conter uma descrição para a transação.
-  - ```trasactionType``` -> Este campo deve conter o tipo de transação que sera realizado. Ex: TED, PIX, DOC e etc... Também aceita o tipo ```CARD```, que indica que essa transação sera feita utilizando um dos cartões cadastrados da empresa.
-  - ```value``` -> Este campo deve conter o valor da transação.
-  - ```type``` ->  Este campo deve conter o tipo da transação, se é uma transação de DEBITO ou CREDITO. Para transações de debito utilize ```debt``` e para transações de credito utilize ```credit```.
-  - ```cardNumber``` -> Este é um parâmetro opcional, mas passa a ser obigatório para transações com cartões, ou seja ```trasactionType``` igual a ```CARD```.
-  - ```establishment``` -> Esse é um parametro opcional, ele deve conter o nome do estabelecimeto que para o qual foi feita a transação.
-
-  > Exemplo de uma estrutra json para fazer uma requisição nessa rota:
-
-```json
-  {
-    "description": "jest test credi",
-    "trasactionType": "CARD",
-    "cardNumber": "1234 5673 9123 1111",
-    "value": 100,
-    "type": "DEBIT"
-  }
-```
+  A rota **/transactions** possui o endPoit **/me/last** que retorna a ultima transação realizada pela empresa logada. Para isso faça uma requisição do tipo **GET** na url dessa rota adicionado o end pont /me/last, que ficará assim: http://localhost:3333/transactions/me/last .
 
 ### Resposta
 
-Esta rota retorna uma responsta do tipo [response](https://responsehttp), contendo um json com os dados da transação, contendo os seguintes campos:
+Esta rota retorna uma responsta do tipo [response](https://expressjs.com/pt-br/api.html#res), contendo um json com os dados da transação, contendo os seguintes campos:
 
   Nome do campo  | tipo
   -------------- | ----
@@ -100,15 +72,16 @@ Esta rota retorna uma responsta do tipo [response](https://responsehttp), conten
 
 ```json
   {
+    "id": "7757aeaf-92c3-452f-a319-76a765cba617",
     "description": "jest test credit",
     "trasactionType": "CARD",
-    "value": 100,
+    "value": "100",
     "type": "DEBIT",
+    "cardNumber": "0000 1111 2222 3333 4444",
+    "establishment": null,
     "company_Id": "3c7d7715-3861-47df-a819-854508a97573",
-    "id": "10c21f3b-3767-41b1-9b85-809d598aa2d1",
-    "created_at": "2020-10-20T03:04:32.555Z",
-    "updated_at": "2020-10-20T03:04:32.555Z",
-    "endOfCard": "1111"
+    "created_at": "2020-10-17T09:32:53.887Z",
+    "updated_at": "2020-10-17T09:32:53.887Z"
   }
 ```
 
@@ -118,15 +91,6 @@ Depedendo dos dados enviados na requisição, a aplicação pode retornar um err
 
 - ```Comapny not found``` -> Esse erro e retornado quando o o token repassado no cabeçalho da requisição pertencer a uma conta que já não existe na aplicação, Ex: Uma empresa resolver deletar sua conta, o token dela não deve mais servir para ser utilizado nas rotas.
 
-- ```insufficient balance``` -> Esse erro pode acontecer quando uma requisição para transação do tipo DEBITO é feita, mas o saldo da empresa é isuficiente. Esse erro vem aconpahado de um satus code de 400.
-
-- ```This fromat number of card is invalid``` -> Esse erro e retornado quando uma requisição para transação que utiliza cartã é feita, mas mas o formato do numero do cartão não segue o padrão mesionado anteriormente. Esse erro vem aconpahado de um satus code de 400.
-
-- ```Number of card is required``` -> Esse erro e retornado quando uma requisição para transação que utiliza cartão é feita, mas o numero do cartão não é enviado. Esse erro vem aconpahado de um satus code de 400.
-
-- ```This number of card is invalid``` -> Esse erro e retornado quando uma requisição para transação que utiliza cartã é feita, mas o numero do cartão não é valido. Esse erro vem aconpahado de um satus code de 400.
-
-- ```Card non exist``` -> Esse erro e retornado quando uma requisição para transação que utiliza cartão é feita, mas o numero do cartão não pertence a nenhum dos cartões cadastrados da empresa. Esse erro vem aconpahado de um satus code de 400.
 
 
 
