@@ -1,6 +1,6 @@
 # /companies/bankAccount/me
 
- Para acessar essa rota utilize a url: http://localhost:3333/companies/bankAccount/me
+> Para acessar essa rota utilize a url: baseURL/companies/bankAccount/me
 
 Está rota é responsável por retornar os dados bancário da empresa.
 

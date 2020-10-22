@@ -1,6 +1,6 @@
 # /companies/balance
 
-> Para acessar essa rota utilize a url: http://localhost:3333//companies/balance
+> Para acessar essa rota utilize a url: baseURL/companies/balance
 
 Está rota é responsável por retornar um balancete da uma empresa.
 

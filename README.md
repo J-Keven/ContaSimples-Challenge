@@ -45,6 +45,7 @@ Data de Transação e flag de "Crédito" e "Débito";
 
 ## 🔥Como utilizar
 
+Você pode acessar a API utilizando o endereço https://deploychallange.jhonnasnunes.com ou pode utlizar localmente em sua máquina e em ambiente de desnvolvimeto
 - ### **Pré-requisitos**
 
   - É **necessário** possuir o **[Node.js](https://nodejs.org/en/) v12x** instalado na máquina
@@ -90,11 +91,11 @@ Data de Transação e flag de "Crédito" e "Débito";
 
 5. Executando a Aplicação:
 ```sh
-  $ yarn start
+  $ yarn dev:start
 
   # ou
 
-  $ npm run start
+  $ npm run dev:start
 ```
 
 Esse comanto ira criar as tabelas necessárioas no seu banco de dados e logo após ira inicar o servidor da aplicação. Assim que as seguntes mensagem aparecerem no seu terminal, a aplicação ja está pronta para ser usada.
@@ -116,34 +117,35 @@ Esse comanto ira criar as tabelas necessárioas no seu banco de dados e logo ap�
 
 ### Utilizando a aplicação
 
-Após fazes as alterações necessárias para rodar a aplicação e executar a plicação você acessar os recursos da aplicação.
+Após fazes as alterações necessárias para rodar a aplicação e executar a plicação você poderá acessar os recursos da aplicação.
 
 A aplicação vai estar executando em um ambiente local, ou seja, na sua maquina. Então o a url começa com **http://localhost**.
 Se preferir você pode trocar o  'localhost' pelo IP local da sua máquina.
 
 A aplicação está utilizano a porta **3333** da sua máquina.
 
-Tendo em vista os casos acima o endereço da apliação é **http://localhost:3333**.
+Tendo em vista os casos acima o endereço da apliação local é **http://localhost:3333**.
 
-- ### Rotas
+- ## Rotas
+
 > A aplicação foi desenvolvida utilizando o padrão rest api e, de acordo com o padrão, a  aplicação utiliza a estrutura de dados **json** para receber os dados de uma requisição e enviar dados em uma resposta.
 
-A aplicação contém os seguintes recursos e você pode acessar cada recurso da aplicação fazendo requições http de acordo com o padrão rest.
+A aplicação contém os seguintes recursos abaixo e você pode acessar cada recurso da aplicação fazendo requições no endereço https://deploychallange.jhonnasnunes.com ou seguindo o passo a passo para executar a aplicação local.
 
-> OBS: As Urls abaixos só poderão ser acessadas quando a aplicação estiver executando na sua maquina.
+> ⚠ Atenção: As urls descritas nesta documentação sempre começam com ```baseURL```, então é essencial que ao fazer uma requisição para cada uma dessa urls, vocẽ substeitua o baseURL por https://deploychallange.jhonnasnunes.com para utilizar recursos da aplicação "deployada" ou http://localhost:3333 para utilizar recursos da aplicação de forma local(No seu prórpio computador).
 
 Rota | url | Método HTPP
 ---- | --- | ------
-Criar uma conta | http://localhost:3333/companies | POST
-Fazer login | http://localhost:3333/login | POST
-Cadastrar um novo cartão | http://localhost:3333/cards | POST
-Cadastrar uma nova transação | http://localhost:3333/transactions | POST
-Lista a ultima transação realizada | http://localhost:3333/companies/me/last | GET
-Extrato das transações de um dia filtrado por cartão | http://localhost:3333/extract/day | GET
-Extrato das transações de um mês filtrado por cartão | http://localhost:3333/extract/month  | GET
-Extrato das transações realizadas com um determinado cartão | http://localhost:3333/cards | GET
-Listar todos os cartões da empresa | http://localhost:3333/cards/me | GET
-Listar o balancete da empresa | http://localhost:3333/companies/balance | GET
+Criar uma conta | baseURL/companies | POST
+Fazer login | baseURL/login | POST
+Cadastrar um novo cartão | baseURL/cards | POST
+Cadastrar uma nova transação | baseURL/transactions | POST
+Lista a ultima transação realizada | baseURL/companies/me/last | GET
+Extrato das transações de um dia filtrado por cartão | baseURL/extract/day | GET
+Extrato das transações de um mês filtrado por cartão | baseURL/extract/month  | GET
+Extrato das transações realizadas com um determinado cartão | baseURL/cards | GET
+Listar todos os cartões da empresa | baseURL/cards/me | GET
+Listar o balancete da empresa | baseURL/companies/balance | GET
 
 Cada rota possui a sua documentação explicando como acessar e o que é necessário para utilizar cada recurso. Você pode ler a documentoação de cada rota em:
 

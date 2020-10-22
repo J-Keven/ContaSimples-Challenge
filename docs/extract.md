@@ -1,6 +1,6 @@
 # /extract
 
-> Para acessar essa rota utilize a url: http://localhost:3333/extract
+> Para acessar essa rota utilize a url: baseURL/extract
 
 Está rota é responsável por retornar um extrato das transações relizadas por uma empresa.
 
@@ -38,7 +38,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   #### /day
 
-  > url: http://localhost:3333/extract/day
+  > url: baseURL/extract/day
 
   Retorna Todas as transações realizadas em uma determinado dia. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
@@ -77,7 +77,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   #### /month
 
-> http://localhost:3333/extract/month
+> baseURL/extract/month
 
   Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 
@@ -112,7 +112,7 @@ Está rota é responsável por retornar um extrato das transações relizadas po
 
   #### /card
 
-  > http://localhost:3333/extract/card
+  > baseURL/extract/card
 
   Retorna Todas as transações realizadas em um determinado mês. Para isso é necessáio enviar no **corpo da requisição(body)** um json com os seguintes campos:
 

@@ -1,6 +1,6 @@
 # /cards
 
-> Para acessar essa rota utilize a url: http://localhost:3333/cards
+> Para acessar essa rota utilize a url: baseURL/cards
 
 Está rota é responsável por adicionar un novo cartão para a empresa. Para que sejá possovél adicionar um cartão é necessário ter uma conta criada e ter feito login para ontber o token de autenticação.
 

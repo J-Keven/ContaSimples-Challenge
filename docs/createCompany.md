@@ -1,6 +1,6 @@
 # /companies
 
-> Para acessar essa rota utilize a url: http://localhost:3333/companies
+> Para acessar essa rota utilize a url: baseURL/companies
 
 Está rota é responsável por criar uma conta para uma empresa na aplicação.
 A partir deste conta é que a empresa porderar fazer login, realizar transações, adicionar cartões e ver seu saldo.

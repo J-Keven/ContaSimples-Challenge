@@ -1,6 +1,6 @@
 # /transactions/me/last
 
-> Para acessar essa rota utilize a url: http://localhost:3333/transactions
+> Para acessar essa rota utilize a url: baseURL/transactions
 
 Está rota é responsável por acessar o recurso de transaçãoes.
 
@@ -28,7 +28,7 @@ Está rota é responsável por acessar o recurso de transaçãoes.
     }
   ```
 
-  A rota **/transactions** possui o endPoit **/me/last** que retorna a ultima transação realizada pela empresa logada. Para isso faça uma requisição do tipo **GET** na url dessa rota adicionado o end pont /me/last, que ficará assim: http://localhost:3333/transactions/me/last .
+  A rota **/transactions** possui o endPoit **/me/last** que retorna a ultima transação realizada pela empresa logada. Para isso faça uma requisição do tipo **GET** na url dessa rota adicionado o end pont /me/last, que ficará assim: baseURL/transactions/me/last .
 
 ### Resposta
 

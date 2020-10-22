@@ -1,12 +1,12 @@
 # /login
 
-> Para acessar essa rota utilize a url: http://localhost:3333/login
+> Para acessar essa rota utilize a url: baseURL/login
 
 Está rota é responsável por fazer o login da aplicação e gerar um token JWT de autenticação que será usado para acessar as rotas privadas da aplicação.
 
 ### Requisição
 
-  Para ter acesso a esse recurso da aplicação é necessario fazer uma requisição do tipo **POST** no endereço **http://localhost:3333/login** passando os seguintes campos no **corpo da requisição(body)**
+  Para ter acesso a esse recurso da aplicação é necessario fazer uma requisição do tipo **POST** no endereço **baseURL/login** passando os seguintes campos no **corpo da requisição(body)**
 
 > Campos que deve ser passados no corpo da requisição:
 

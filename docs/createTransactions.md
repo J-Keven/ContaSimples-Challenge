@@ -1,6 +1,6 @@
 # /transactions
 
-> Para acessar essa rota utilize a url: http://localhost:3333//transactions
+> Para acessar essa rota utilize a url: baseURL/transactions
 
 Está rota é responsável por acessar o recurso de transaçãoes.
 
